@@ -1,0 +1,6 @@
+secret_key.txt
+db.txt
+env/**
+passenger_wsgi.py*
+*/__pycache__/**
+*/migrations/**

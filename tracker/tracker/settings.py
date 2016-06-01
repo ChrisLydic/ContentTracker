@@ -10,12 +10,11 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '=k5euxnvsxl$1@t2f-2n!9n-lg84ay(!_+s@j8+!0_&ctz2mn&'
+with open( os.path.abspath( 'tracker/secret_key.txt' ) ) as f:
+    SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -69,16 +68,22 @@ WSGI_APPLICATION = 'tracker.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+with open( os.path.abspath( 'tracker/db.txt' ) ) as f:
+    dbdata = f.read().strip().split('+')
+    
+    DATABASES = {
+        'default': {
+            'ENGINE': dbdata[0],
+            'NAME': dbdata[1],
+            'USER': dbdata[2],
+            'PASSWORD': dbdata[3],
+            'HOST': dbdata[4],
+            'PORT': dbdata[5],
+        }
     }
-}
 
 
 # Password validation
-# https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -114,3 +119,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.dirname(BASE_DIR) + '/public/static/'
