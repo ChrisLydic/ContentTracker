@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+   Login | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="formWrapper">
+
+        <form method="post" action="{% url 'login' %}">
+            
+            {% csrf_token %}
+
+            {% if form.errors %}
+                <p>Your username and password didn't match. Please try again.</p>
+            {% endif %}
+            
+            {{ form.username.label_tag }}
+            {{ form.username }}
+
+            {{ form.password.label_tag }}
+            {{ form.password }}
+            
+            <input type="submit" value="Login" />
+            <input type="hidden" name="next" value="{{ next }}" />
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'user.html' %}
+
+{% block title %}
+   Settings | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    {% if noEdit %}
+    <div class="formWrapper">
+        <form method="POST">
+            {% for field in form %}
+                <label>{{ field.label }}:
+                {{ field.value }}</label>
+            {% endfor %}
+
+            <div class="button" style="margin-top: 20px;">
+                <a href="/accounts/settings_change/"><input type="button" value="Change Settings" /></a>
+                <a href="/accounts/password_change/"><input type="button" value="Change Password" /></a>
+            </div>
+        </form>
+    </div>
+
+    {% else %}
+
+    <div class="formWrapper">
+        <form method="POST">
+            {% csrf_token %}
+            
+            {% for field in form %}
+                
+                {{ field.label_tag }}
+                
+                {% if field.errors %}
+                    <p>{{ field.errors.as_text }}</p>
+                {% endif %}
+                
+                {{ field }}
+
+            {% endfor %}
+            
+            <input type="submit" value="Update" />
+        </form>
+    </div>
+
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,257 @@
+{% extends 'content.html' %}
+{% load staticfiles %}
+{% load itemTags %}
+
+{% block title %}
+    {{ currList.name }} | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="contentWrapper">
+    
+        <nav class="mCustomScrollbar" data-mcs-theme="minimal-dark">
+            {% for list in lists %}
+            
+                {% if list == currList %}
+                    <a> <section class="currSection"> {{ list.name }} </section> </a>
+                {% else %}
+                    <a href="/lists/{{ list.pk }}/"> <section> {{ list.name }} </section> </a>
+                {% endif %}
+                <!--<div class="subNavWrapper">
+                    <section> list </section>
+                    <section> git som </section>
+                </div>-->
+                
+            {% endfor %}
+        </nav>
+        
+        <div class="listWrapper mCustomScrollbar" data-mcs-theme="minimal" id="{{ currList.pk }}">
+            
+            {% if items %}
+            <section id="itemForm">
+            {% else %}
+            <section id="itemForm" style="display:flex;">
+            {% endif %}
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                    {% for field in form %}
+                        {% if currList.hasDescription or field.label != 'Description' %}
+                        
+                        <div>
+                        {{ field.label_tag }}
+                        
+                        {% if field.errors %}
+                            <p>{{ field.errors.as_text }}</p>
+                        {% endif %}
+                        
+                        {{ field }}
+                        </div>
+                        
+                        {% endif %}
+                    {% endfor %}
+
+                    <div class="button">
+                        <input type="submit" value="Create List Item">
+                        <input type="button" onclick="hideNewItem()" value="Exit">
+                    </div>
+                
+                </form>
+            </section>
+        
+            {% for item in items %}
+                {% if currList.progType == 'bar' and item.progress == 100 %}
+                <section id="item{{ item.pk }}" style="opacity: 0.4">
+                {% else %}
+                    {% if currList.progType == 'check' and item.progress > 0 %}
+                    <section id="item{{ item.pk }}" style="opacity: 0.4">
+                    {% else %}
+                    <section id="item{{ item.pk }}">
+                    {% endif %}
+                {% endif %}
+                
+                    
+                    <div class="itemHeader">
+                        <h1><a 
+                        {% if currList.itemType == 'Link' %}
+                        href="{{ item.url }}"> {{ item.name }} </a>
+                        {% else %}
+                         > {{ item.name }} </a>
+                        {% endif %}</h1>
+
+                        {% if currList.progType == 'bar' and item.progress == 100 %}
+                        <div class="barWrapper" id="barCont{{ item.pk }}" style="background-color: #DCE8E8">
+                        {% else %}
+                            {% if currList.progType == 'check' and item.progress > 0 %}
+                            <div class="barWrapper" id="barCont{{ item.pk }}" style="background-color: #DCE8E8">
+                            {% else %}
+                            <div class="barWrapper" id="barCont{{ item.pk }}">
+                            {% endif %}
+                        {% endif %}
+                            
+                            {% if currList.progType == 'bar' %}
+                                <div class="bar" id="bar{{ item.pk }}"
+                                    style="flex: {% toDecimal item.progress %} 0 auto"></div>
+                                <div class="offset" id="barOffset{{ item.pk }}"
+                                    style="flex: {% offset item.progress %} 0 auto"></div>
+                            {% endif %}
+                            
+                        </div>
+                        
+                        <div class="itemOptions" id="itemOptions{{ item.pk }}">
+
+                            <img src="{% static 'lists/img/edit.png' %}"
+                                title="Edit">
+
+                            <img src="{% static 'lists/img/delete.png' %}"
+                                title="Delete">
+
+                            <img src="{% static 'lists/img/moveDown.png' %}"
+                                title="Move Down">
+
+                            <img src="{% static 'lists/img/moveUp.png' %}"
+                                title="Move Up">
+
+                        </div>
+
+                        {% if currList.progType == 'check' %}
+                            <div class="checkWrapper" id="checkWrapper{{ item.pk }}">
+                            {% if item.progress == 0 %}
+                                <a class="checkbox"></a>
+                            {% else %}
+                                <a class="checkboxSelected"></a>
+                            {% endif %}
+                            </div>
+                        {% endif %}
+                        
+                    </div>
+                    
+                    {% if currList.hasDescription %}
+                        {% if item.description != "" %}
+                            <div class="descWrapper">
+                                {% if currList.itemType == 'Book' %}
+                                    {% if item.cover != 'none' %}
+                                        <img src="{{ item.cover }}">
+                                    {% else %}
+                                        <img src="{% static 'lists/img/cover.png' %}">
+                                    {% endif %}
+                                    
+                                    <div>
+                                        <div class="extraDesc">
+                                            <p> {{ item.authors }} </p>
+                                            <p> <span id="page{{ item.pk }}">{{ item.pageNumber }}</span> pages </p>
+                                        </div>
+
+                                        <p> {{ item.description }} </p>
+
+                                        {% if item.olid != 'none' %}
+                                            <p>
+                                            <a href="https://openlibrary.org/books/{{ item.olid }}/">
+                                            View on OpenLibrary
+                                            </a>
+                                            </p>
+                                        {% endif %}
+                                    </div>
+
+                                {% else %}
+                                    <p> {{ item.description }} </p>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                    
+                </section>
+            {% endfor %}
+        </div>
+        
+    </div>
+    
+{% endblock %}
+
+{% block js %}
+    {{ block.super }}
+    <script src="{% static 'lists/itemActions.js' %}"></script>
+
+    {% if currList.progType == 'bar' %}
+        <script src="{% static 'lists/progressBar.js' %}"></script>
+    {% endif %}
+
+    <!--
+        events for custom checkbox is done here because the images have relative
+        urls that the static css can't deal with
+    -->
+    <script>
+        $( document ).ready( function() {
+            var listpk = $( '.listWrapper' ).prop( 'id' );
+
+            $( '[id^=checkWrapper]' ).each( function() {
+                var itempk = this.id.slice( 'checkWrapper'.length );
+
+                function checkboxAction() {
+                    $( this ).removeClass( 'checkbox' );
+                    $( this ).addClass( 'checkboxSelected' );
+                    $( this ).css( 'background-image',
+                        "url(\"{% static 'img/checkboxActive.png' %}\")" );
+                    $( this ).off();
+                    $( this ).on( 'click', selectedboxAction );
+                    $( this ).on( 'mouseenter', checkboxHover );
+                    $( this ).on( 'mouseleave', checkboxHoverOut );
+                    
+                    $( '#barCont' + itempk ).css('background-color','#DCE8E8')
+                    $( '#item' + itempk ).css('opacity','0.4')
+
+                    $.ajax( {
+                        type: 'POST',
+                        url: '/lists/' + listpk + '/item/' + itempk + '/progress/',
+                        dataType: "json",
+                        data: { "progress": 1 },
+                        success: function ( data ) {
+                            if ( data.errors.length ) {
+                                alert( data.errors );
+                            }
+                        },
+                    } );
+                }
+
+                function selectedboxAction() {
+                    $( this ).removeClass( 'checkboxSelected' );
+                    $( this ).addClass( 'checkbox' );
+                    $( this ).css( 'background-image',
+                        "url(\"{% static 'img/checkbox.png' %}\")" );
+                    $( this ).off();
+                    $( this ).on( 'click', checkboxAction );
+
+                    $( '#barCont' + itempk ).css('background-color','#4883A3')
+                    $( '#item' + itempk ).css('opacity','1')
+
+                    $.ajax( {
+                        type: 'POST',
+                        url: '/lists/' + listpk + '/item/' + itempk + '/progress/',
+                        dataType: "json",
+                        data: { "progress": 0 },
+                        success: function ( data ) {
+                            if ( data.errors.length ) {
+                                alert( data.errors );
+                            }
+                        },
+                    } );
+                }
+
+                function checkboxHover() {
+                    $( this ).css( 'background-image',
+                        "url(\"{% static 'img/checkboxHover.png' %}\")" );
+                }
+
+                function checkboxHoverOut() {
+                    $( this ).css( 'background-image',
+                        "url(\"{% static 'img/checkboxActive.png' %}\")" );
+                }
+
+                $( '#checkWrapper' + itempk + ' .checkbox' ).on( 'click', checkboxAction );
+
+                $( '#checkWrapper' + itempk + ' .checkboxSelected' ).on( 'click', selectedboxAction );
+            } );
+        } );
+    </script>
+{% endblock %}

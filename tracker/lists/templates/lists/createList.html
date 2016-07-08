@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    New List | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="contentWrapper">
+    
+        <nav>
+            {% for list in lists %}
+                <a href="/lists/{{ list.pk }}/"> <section> {{ list.name }} </section> </a>
+            {% endfor %}
+        </nav>
+        
+        <div class="listWrapper">
+            
+            <section>
+                <form method="POST">
+                    {% csrf_token %}
+                    
+                    {% for field in form %}
+                        <div>
+
+                        {{ field.label_tag }}
+                            {% if field.errors %}
+                                <p>{{ field.errors.as_text }}</p>
+                            {% endif %}
+                        {{ field }}
+                        
+                        </div>
+                    {% endfor %}
+
+                    <div class="button">
+                        <input type="submit" value="Create List" />
+                    </div>
+
+                </form>
+            </section>
+        
+        </div>
+        
+    </div>
+{% endblock %}

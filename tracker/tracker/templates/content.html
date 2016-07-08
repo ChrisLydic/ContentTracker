@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block actions %}
+    <div id="links" class="listLinks">
+    
+        <a href="/lists/create/">New List</a>
+        <a href="/lists/{{ currList.pk }}/edit/">Edit List</a>
+        <a href="javascript:void(0);" onclick="showDeleteList( {{ currList.pk }} )">
+            Delete List</a>
+        <a href="javascript:void(0);" onclick="showNewItem()">New Item</a>
+    
+    </div>
+{% endblock %}
+
+{% block js %}
+    {{ block.super }}
+    <script src="{% static 'lists/listActions.js' %}"></script>
+{% endblock %}

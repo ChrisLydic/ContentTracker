@@ -31,6 +31,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts',
+    'lists',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -49,7 +51,11 @@ ROOT_URLCONF = 'tracker.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.abspath( 'tracker/templates' ),
+            os.path.abspath( 'accounts/templates' ),
+            os.path.abspath( 'lists/templates' ),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,6 +88,8 @@ with open( os.path.abspath( 'tracker/db.txt' ) ) as f:
         }
     }
 
+# Login url, used by @login_required
+LOGIN_URL = '/accounts/login/'
 
 # Password validation
 
@@ -119,4 +127,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.dirname(BASE_DIR) + '/public/static/'
+STATIC_ROOT = os.path.join( os.path.join( os.path.dirname(BASE_DIR), 'public' ), 'static' )
+STATICFILES_DIRS = [
+    os.path.abspath( 'tracker/static' ),
+]
