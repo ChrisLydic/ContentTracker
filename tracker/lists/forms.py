@@ -53,3 +53,4 @@ class BookForm( ItemForm ):
     cover = forms.URLField( label='Image URL', max_length=500, required=False, initial='http://' )
     pageNumber = forms.IntegerField( label='Number of Pages', min_value=0, required=True, initial='0' )
     authors = forms.CharField( label='Author(s)', max_length=200, required=True )
+    olid = forms.CharField( label='', max_length=20, widget=forms.HiddenInput, required=False )

@@ -33,7 +33,11 @@
             <section id="itemForm" style="display:flex;">
             {% endif %}
 
+                {% if currList.itemType == 'Book' %}
+                <form method="POST" style="display:none;" id="custom{{ currList.itemType }}" name="bookForm">
+                {% else %}
                 <form method="POST">
+                {% endif %}
                     {% csrf_token %}
 
                     {% for field in form %}
@@ -53,11 +57,32 @@
                     {% endfor %}
 
                     <div class="button">
-                        <input type="submit" value="Create List Item">
+                        <input type="submit" value="Create Item">
+
+                        {% if currList.itemType == 'Book' %}
+                        <input type="button" onclick="showSearch()" value="Use Search">
+                        {% endif %}
+
                         <input type="button" onclick="hideNewItem()" value="Exit">
                     </div>
                 
                 </form>
+
+                {% if currList.itemType == 'Book' %}
+                    <form id="search{{ currList.itemType }}" onsubmit="return false;">
+                        <div>
+                            <input type="text" id="searchData" >
+                            <div id="searchWrapper" class="mCustomScrollbar" data-mcs-theme="minimal-dark">
+                                
+                            </div>
+                        </div>
+
+                        <input type="submit" onclick="search()" value="Search">
+                        <input type="button" onclick="showCustom()" value="Create Custom Item">
+                        <input type="button" onclick="hideNewItem()" value="Exit">
+                    </form>
+                {% endif %}
+
             </section>
         
             {% for item in items %}
@@ -128,7 +153,7 @@
                     </div>
                     
                     {% if currList.hasDescription %}
-                        {% if item.description != "" %}
+                        {% if item.description != "" or currList.itemType == 'Book' %}
                             <div class="descWrapper">
                                 {% if currList.itemType == 'Book' %}
                                     {% if item.cover != 'none' %}
@@ -147,7 +172,7 @@
 
                                         {% if item.olid != 'none' %}
                                             <p>
-                                            <a href="https://openlibrary.org/books/{{ item.olid }}/">
+                                            <a href="{{ item.url }}/">
                                             View on OpenLibrary
                                             </a>
                                             </p>
@@ -177,6 +202,10 @@
         <script src="{% static 'lists/progressBar.js' %}"></script>
     {% endif %}
 
+    {% if currList.itemType == 'Book' %}
+        <script src="{% static 'lists/search.js' %}"></script>
+    {% endif %}
+
     <!--
         events for custom checkbox is done here because the images have relative
         urls that the static css can't deal with
@@ -198,8 +227,8 @@
                     $( this ).on( 'mouseenter', checkboxHover );
                     $( this ).on( 'mouseleave', checkboxHoverOut );
                     
-                    $( '#barCont' + itempk ).css('background-color','#DCE8E8')
-                    $( '#item' + itempk ).css('opacity','0.4')
+                    $( '#barCont' + itempk ).css( 'background-color','#DCE8E8' )
+                    $( '#item' + itempk ).css( 'opacity','0.4' )
 
                     $.ajax( {
                         type: 'POST',

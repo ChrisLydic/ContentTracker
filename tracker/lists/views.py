@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect, JsonResponse, Http404, HttpResponseServerError
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import List, Item, getItems, getItem, makeItem
+from .models import List, Item
+from .items import getItems, getItem, makeItem
 from .forms import ListForm, ItemForm, LinkForm, BookForm
 import json
 

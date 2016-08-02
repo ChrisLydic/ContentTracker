@@ -1,73 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.core.validators import MaxValueValidator
-
-def getItem( user, list, itempk ):
-    itemType = list.itemType
-
-    if itemType == 'Item':
-        item = Item.objects.get( pk=itempk, list=list, user=user )
-    elif itemType == 'Link':
-        item = Link.objects.get( pk=itempk, list=list, user=user )
-    elif itemType == 'Book':
-        item = Book.objects.get( pk=itempk, list=list, user=user )
-
-    return item
-
-def getItems( user, list ):
-    itemType = list.itemType
-
-    if itemType == 'Item':
-        itemSet = Item.objects.filter( list=list, user=user ).order_by( '-position' )
-    elif itemType == 'Link':
-        itemSet = Link.objects.filter( list=list, user=user ).order_by( '-position' )
-    elif itemType == 'Book':
-        itemSet = Book.objects.filter( list=list, user=user ).order_by( '-position' )
-
-    return itemSet
-
-def makeItem( user, list, cleanedData, currPos ):
-    itemType = list.itemType
-
-    if itemType == 'Item':
-        newItem = Item(
-            user=user,
-            list=list,
-            name=cleanedData.get('name'),
-            description=cleanedData.get('description'),
-            position=currPos
-        )
-        newItem.save()
-    elif itemType == 'Link':
-        newItem = Link(
-            user=user,
-            list=list,
-            name=cleanedData.get('name'),
-            description=cleanedData.get('description'),
-            url=cleanedData.get('url'),
-            position=currPos
-        )
-        newItem.save()
-    elif itemType == 'Book':
-        olid = cleanedData.get( 'olid' )
-        cover = cleanedData.get( 'cover' )
-        if not olid:
-            olid = 'none'
-        if not cover:
-            cover = 'none'
-
-        newItem = Book(
-            user=user,
-            list=list,
-            name=cleanedData.get('name'),
-            description=cleanedData.get('description'),
-            olid=olid,
-            cover=cover,
-            pageNumber=cleanedData.get('pageNumber'),
-            authors=cleanedData.get('authors'),
-            position=currPos
-        )
-        newItem.save()
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 class List( models.Model ):
     user = models.ForeignKey( User, on_delete=models.CASCADE )
@@ -105,28 +38,43 @@ class Item( models.Model ):
     list = models.ForeignKey( List, on_delete=models.CASCADE )
     dateCreated = models.DateField( auto_now_add=True )
     name = models.CharField( max_length=40 )
-    description = models.CharField( max_length=500 )
+    description = models.CharField( max_length=500, default='' )
     
     # Used to order the items, bottom-most item is 0
     position = models.PositiveIntegerField()
     
     # When progress is a boolean, 0 is false and any other value is true
-    progress = models.PositiveIntegerField( default=0, validators=[ MaxValueValidator(100) ] )
+    progress = models.PositiveIntegerField( default=0,
+        validators=[ MaxValueValidator(100) ] )
 
     # keywords = models.TextField( max_length=1000 )
 
 class Link( Item ):
-    url = models.URLField( max_length=500 )
+    url = models.URLField( max_length=500, default='/' )
 
-class Book( Item ):
+class Book( Link ):
     # open library id
     olid = models.CharField( max_length=20, default='none' )
     cover = models.URLField( max_length=500, default='none' )
-    pageNumber = models.PositiveIntegerField()
+    pageNumber = models.PositiveIntegerField( default=0 )
     authors = models.CharField( max_length=200 )
 
-# class Show( Item ):
-#     url = models.URLField( max_length=500 )
+class Show( Item ):
+    imdbId = models.CharField( max_length=20 )
+    cover = models.URLField( max_length=2000, default='none' )
+    imdbRating = models.DecimalField( max_digits=3, decimal_places=1,
+        validators=[ MaxValueValidator(10), MinValueValidator(0) ] )
+    metascore = models.PositiveIntegerField( default=0,
+        validators=[ MaxValueValidator(100) ] )
+    seasons = models.PositiveIntegerField( default=0 )
+    writers = models.CharField( max_length=200 )
 
-# class Movie( Item ):
-#     url = models.URLField( max_length=500 )
+class Movie( Item ):
+    imdbId = models.CharField( max_length=20 )
+    cover = models.URLField( max_length=2000, default='none' )
+    imdbRating = models.DecimalField( max_digits=3, decimal_places=1,
+        validators=[ MaxValueValidator(10), MinValueValidator(0) ] )
+    metascore = models.PositiveIntegerField( default=0,
+        validators=[ MaxValueValidator(100) ] )
+    runtime = models.PositiveIntegerField( default=0 )
+    directors = models.CharField( max_length=200 )

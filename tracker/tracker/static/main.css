@@ -145,7 +145,6 @@ nav .currSection {
 .listWrapper section {
     margin: 0 15px 30px 0;
     max-width: 1400px;
-    /*border: 1px solid;*/
 
     transition: opacity 0.25s ease-in;
 }
@@ -360,7 +359,7 @@ form p {
     margin: 0 0 7px 0 !important; /* .listWrapper p was overriding this css */
     padding: 0 !important;
     font-size: 1em !important;
-    color: #FFBBFF;
+    color: #FAFFBD;
 }
 
 form label {
@@ -421,6 +420,89 @@ input[type="button"]:active, input[type="submit"]:active {
 
 #itemForm {
     display: none;
+}
+
+/* css for search functionality */
+#searchData {
+    box-sizing: border-box;
+    width: 600px;
+    margin: 0;
+}
+
+#searchWrapper {
+    display: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    width: 600px;
+    max-height: 300px;
+    margin: 0;
+    border-radius: 3px;
+    background-color: #DCE8E8;
+    color: #03141d;
+    padding: 10px;
+}
+
+/* Override display:flex rule for divs in forms */
+#searchWrapper div:not(.searchItem) {
+    display: block;
+    margin: 0;
+}
+
+.searchItem {
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    max-height: 100px;
+    margin: 0 0 20px 0;
+    overflow: hidden;
+}
+
+.searchItem:hover {
+    background-color: #B5CDDA;
+}
+
+.searchItem:active {
+    background-color: #FAFFBD;
+}
+
+.searchItem img {
+    flex: 0 0 auto;
+
+    margin: 0 10px 0 0;
+    max-height: 100px;
+}
+
+.searchItem div {
+    flex: 1 1 auto;
+
+    float: none;
+    max-height: 100px;
+    margin: 0;
+}
+
+.searchItem h1 {
+    margin: 0 0 10px 0;
+    font-size: 1em;
+    line-height: 1rem;
+}
+
+.searchItem p {
+    /*margin: 0;*/
+    color: #03141d;
+    max-width: 600px;
+    text-overflow: clip;
+}
+
+@media ( max-width: 1000px ) {
+    #searchData {
+        width: 300px;
+    }
+
+    #searchWrapper {
+        width: 300px;
+    }
 }
 
 /* custom checkbox css */
