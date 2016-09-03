@@ -1,0 +1,251 @@
+{% extends 'sample/base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    Tutorials | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="contentWrapper">
+        <nav class="mCustomScrollbar" data-mcs-theme="minimal-dark">
+
+            <a href="/lists/sample/1/"> <section> Projects </section> </a>
+            <a href="/lists/sample/2/"> <section> TV Shows </section> </a>
+            <a href="/lists/sample/3/"> <section> Movies </section> </a>
+            <a> <section class="currSection"> Tutorials </section> </a>
+            <a href="/lists/sample/5/"> <section> Books </section> </a>
+            <a href="/lists/sample/6/"> <section> Educational Websites </section> </a>
+            <a href="/lists/sample/7/"> <section> Anime </section> </a>
+            <a href="/lists/sample/8/"> <section> Textbooks </section> </a>
+            <a href="/lists/sample/9/"> <section> Videogames </section> </a>
+
+        </nav>
+        
+        <div class="listWrapper mCustomScrollbar" data-mcs-theme="minimal">
+
+            <section id="itemForm">
+
+                <form id="customBook" name="searchForm">
+
+                    <div>
+                        <label for="id_name">Name</label>
+                        <input id="id_name" maxlength="100" name="name" type="text" required />
+                    </div>
+
+                    <div>
+                        <label for="id_description">Description</label>
+                        <input id="id_description" maxlength="500" name="description" type="text" />
+                    </div>
+
+                    <div>
+                        <label for="id_url">Website</label>
+                        <input id="id_url" maxlength="500" name="url" type="url" value="http://" required />
+                    </div>
+
+                    <div class="button">
+                        <input type="button" value="Create Item"
+                            onclick="alert( 'This functionality is not available for sample content' )">
+                        <input type="button" onclick="hideNewItem()" value="Exit">
+                    </div>
+                </form>
+            </section>
+
+            <section id="item28">
+                <div class="itemHeader">
+                    <h1>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API"> Canvas API - MDN </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont28"></div>
+                        
+                    <div class="itemOptions" id="itemOptions28">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+                            
+                <div class="descWrapper">
+                    <p> Added in HTML5, the HTML &lt;canvas&gt; element can be used to draw graphics via scripting in JavaScript. For example, it can be used to draw graphs, make photo compositions, create animations, or even do real-time video processing or rendering. </p>
+                </div>
+            </section>
+
+            <section id="item27">
+                <div class="itemHeader">
+                    <h1>
+                        <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/"> A Complete Guide to Flexbox </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont27"></div>
+
+                    <div class="itemOptions" id="itemOptions27">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+
+                <div class="descWrapper">
+                    <p> The Flexbox Layout (Flexible Box) module (currently a W3C Last Call Working Draft) aims at providing a more efficient way to lay out, align and distribute space among items in a container, even when their size is unknown and/or dynamic (thus the word &quot;flex&quot;). </p>
+                </div>
+            </section>
+
+            <section id="item26">
+                <div class="itemHeader">
+                    <h1>
+                        <a href="https://docs.python.org/3/"> Python 3 Documentation </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont26"></div>
+
+                    <div class="itemOptions" id="itemOptions26">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+
+                <div class="descWrapper">
+                    <p> The Flexbox Layout (Flexible Box) module (currently a W3C Last Call Working Draft) aims at providing a more efficient way to lay out, align and distribute space among items in a container, even when their size is unknown and/or dynamic (thus the word &quot;flex&quot;). </p>
+                </div>
+            </section>
+
+            <section id="item25">
+                <div class="itemHeader">
+                    <h1>
+                        <a href="http://www.irchelp.org/irchelp/irctutorial.html"> IRC </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont25"></div>
+
+                    <div class="itemOptions" id="itemOptions25">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+
+                <div class="descWrapper">
+                    <p> IRC (Internet Relay Chat) is a multi-user, multi-channel chatting system. Imagine sitting in front of your computer and “talking” through typed messages with either one person or many other people from all over the Internet, all in real time! Best of all, once you get set up, chatting on IRC is totally free! </p>
+                </div>
+            </section>
+
+            <section id="item24">
+                <div class="itemHeader">
+                    <h1>
+                        <a href="http://radiantdreamer.net/how-to-draw-better-line-art/"> Line Art </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont24"></div>
+
+                    <div class="itemOptions" id="itemOptions24">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+
+                <div class="descWrapper">
+                    <p> Drawing line art isn’t as simple as simply laying down some lines. There are a few critical areas that you should keep in mind while drawing, which I will cover here. </p>
+                </div>
+            </section>
+
+            <section id="item22">
+                <div class="itemHeader">
+                    <h1>
+                        <a href="http://dianae.deviantart.com/art/Digital-Painting-Tutorial-74468761"> Digital Painting </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont22"></div>
+
+                    <div class="itemOptions" id="itemOptions22">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+
+            <section id="item21">
+                <div class="itemHeader">
+                    <h1>
+                        <a href="http://phaser.io/tutorials/making-your-first-phaser-game"> Phaser.js </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont21"></div>
+
+                    <div class="itemOptions" id="itemOptions21">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+
+                <div class="descWrapper">
+                    <p> Our first tutorial on Making a Game with Phaser. Here we will learn how to create a small game involving a player running and jumping around platforms collecting stars. While going through this process we&#39;ll explain some of the core features of the framework. </p>
+                </div>
+            </section>
+
+            <section id="item23">
+                <div class="itemHeader">
+                    <h1>
+                        <a href="https://www.codecademy.com/"> codecademy </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont23"></div>
+
+                    <div class="itemOptions" id="itemOptions23">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+
+                <div class="descWrapper">
+                    <p> Learn to code interactively, for free. </p>
+                </div>
+            </section>
+
+        </div>
+    </div>
+{% endblock %}

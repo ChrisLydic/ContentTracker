@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block actions %}
+    <div id="links" class="listLinks">
+
+        <a href="javascript:void(0);" onclick="alert( 'This functionality is not available for sample content' )">New List</a>
+        <a href="javascript:void(0);" onclick="alert( 'This functionality is not available for sample content' )">Edit List</a>
+        <a href="javascript:void(0);" onclick="showDeleteList()">
+            Delete List</a>
+        <a href="javascript:void(0);" onclick="showNewItem()">New Item</a>
+
+    </div>
+{% endblock %}
+
+{% block js %}
+    {{ block.super }}
+    <script src="{% static 'sample/listActions.js' %}"></script>
+    <script src="{% static 'sample/itemActions.js' %}"></script>
+
+    <script src="{% static 'sample/progressBar.js' %}"></script>
+
+    <script src="{% static 'sample/search.js' %}"></script>
+
+    <!--
+        events for custom checkbox is done here because the images have relative
+        urls that the static css can't deal with
+    -->
+    <script>
+        $( document ).ready( function() {
+            var listpk = $( '.listWrapper' ).prop( 'id' );
+
+            $( '[id^=checkWrapper]' ).each( function() {
+                var itempk = this.id.slice( 'checkWrapper'.length );
+
+                function checkboxAction() {
+                    $( this ).removeClass( 'checkbox' );
+                    $( this ).addClass( 'checkboxSelected' );
+                    $( this ).css( 'background-image',
+                        "url(\"{% static 'img/checkboxActive.png' %}\")" );
+                    $( this ).off();
+                    $( this ).on( 'click', selectedboxAction );
+                    $( this ).on( 'mouseenter', checkboxHover );
+                    $( this ).on( 'mouseleave', checkboxHoverOut );
+
+                    $( '#barCont' + itempk ).css( 'background-color','#DCE8E8' )
+                    $( '#item' + itempk ).css( 'opacity','0.4' )
+
+                    $.ajax( {
+                        type: 'POST',
+                        url: '/lists/' + listpk + '/item/' + itempk + '/progress/',
+                        dataType: "json",
+                        data: { "progress": 1 },
+                        success: function ( data ) {
+                            if ( data.errors.length ) {
+                                alert( data.errors );
+                            }
+                        },
+                    } );
+                }
+
+                function selectedboxAction() {
+                    $( this ).removeClass( 'checkboxSelected' );
+                    $( this ).addClass( 'checkbox' );
+                    $( this ).css( 'background-image',
+                        "url(\"{% static 'img/checkbox.png' %}\")" );
+                    $( this ).off();
+                    $( this ).on( 'click', checkboxAction );
+
+                    $( '#barCont' + itempk ).css('background-color','#4883A3')
+                    $( '#item' + itempk ).css('opacity','1')
+
+                    $.ajax( {
+                        type: 'POST',
+                        url: '/lists/' + listpk + '/item/' + itempk + '/progress/',
+                        dataType: "json",
+                        data: { "progress": 0 },
+                        success: function ( data ) {
+                            if ( data.errors.length ) {
+                                alert( data.errors );
+                            }
+                        },
+                    } );
+                }
+
+                function checkboxHover() {
+                    $( this ).css( 'background-image',
+                        "url(\"{% static 'img/checkboxHover.png' %}\")" );
+                }
+
+                function checkboxHoverOut() {
+                    $( this ).css( 'background-image',
+                        "url(\"{% static 'img/checkboxActive.png' %}\")" );
+                }
+
+                $( '#checkWrapper' + itempk + ' .checkbox' ).on( 'click', checkboxAction );
+
+                $( '#checkWrapper' + itempk + ' .checkboxSelected' ).on( 'click', selectedboxAction );
+            } );
+        } );
+    </script>
+{% endblock %}

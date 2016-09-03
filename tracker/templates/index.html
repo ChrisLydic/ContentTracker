@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+    <link href="{% static 'magic.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="homeWrapper">
+
+        <div id="slideCont">
+            <div id="s4" class="magictime" style="z-index:0;">
+                <img src="{% static 'sample/img/tutorials.png' %}">
+            </div>
+
+            <div id="s3" class="magictime" style="z-index:1;">
+                <img src="{% static 'sample/img/education.png' %}">
+            </div>
+
+            <div id="s2" class="magictime" style="z-index:2;">
+                <img src="{% static 'sample/img/movies.png' %}">
+            </div>
+
+            <div id="s1" class="magictime" style="z-index:3;">
+                <img src="{% static 'sample/img/books.png' %}">
+            </div>
+
+            <div id="s0" class="magictime" style="z-index:4;">
+                <img src="{% static 'sample/img/tv.png' %}">
+            </div>
+        </div>
+
+        <h1>
+            Track what you watch and read
+        </h1>
+        <!--keep track of the content you love. -->
+
+        <p>
+            content_tracker can be used to keep track of the media you consume,
+            the projects you're working on, and anything else you want.
+        </p>
+
+        <div>
+            <img src="{% static 'sample/img/search.gif' %}">
+        </div>
+
+        <h1>
+            Search Support
+        </h1>
+
+        <p>
+            content_tracker currently has search support for movies, tv shows,
+            and books. New list items can be created automatically from the
+            search results. If anything can't be found in the search, you can create a custom item for it.
+        </p>
+
+        <h1>
+            Try it now - <a href="/lists/sample/2/">View the example account</a>
+        </h1>
+
+        <p></p>
+
+    </div>
+{% endblock %}
+
+{% block js %}
+    {{ block.super }}
+    <script src="{% static 'sample/slideRun.js' %}"></script>
+    <script src="{% static 'sample/slideShifter.js' %}"></script>
+{% endblock %}
