@@ -1,0 +1,406 @@
+{% extends 'sample/base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    Educational Websites | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="contentWrapper">
+        <nav class="mCustomScrollbar" data-mcs-theme="minimal-dark">
+
+            <a href="/lists/sample/1/"> <section> Projects </section> </a>
+            <a href="/lists/sample/2/"> <section> TV Shows </section> </a>
+            <a href="/lists/sample/3/"> <section> Movies </section> </a>
+            <a href="/lists/sample/4/"> <section> Tutorials </section> </a>
+            <a href="/lists/sample/5/"> <section> Books </section> </a>
+            <a> <section class="currSection"> Educational Websites </section> </a>
+            <a href="/lists/sample/7/"> <section> Anime </section> </a>
+            <a href="/lists/sample/8/"> <section> Textbooks </section> </a>
+            <a href="/lists/sample/9/"> <section> Videogames </section> </a>
+
+        </nav>
+        
+        <div class="listWrapper mCustomScrollbar" data-mcs-theme="minimal" id="7">
+
+            <section id="itemForm">
+                <form id="customBook" name="searchForm">
+
+                    <div>
+                        <label for="id_name">Name</label>
+                        <input id="id_name" maxlength="100" name="name" type="text" required />
+                    </div>
+
+                    <div>
+                        <label for="id_url">Website</label>
+                        <input id="id_url" maxlength="500" name="url" type="url" value="http://" required />
+                    </div>
+
+                    <div class="button">
+                        <input type="button" value="Create Item"
+                            onclick="alert( 'This functionality is not available for sample content' )">
+                        <input type="button" onclick="hideNewItem()" value="Exit">
+                    </div>
+                
+                </form>
+            </section>
+
+            <section id="item40">
+                <div class="itemHeader">
+                    <h1><a href="https://www.khanacademy.org/"> Khan Academy </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont40"></div>
+
+                    <div class="itemOptions" id="itemOptions40">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="item50">
+                <div class="itemHeader">
+                    <h1><a href="https://cosmolearning.org/"> Cosmo Learning </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont50"></div>
+
+                    <div class="itemOptions" id="itemOptions50">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="item43">
+                <div class="itemHeader">
+                    <h1><a href="https://www.udacity.com/"> Udacity </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont43"></div>
+
+                    <div class="itemOptions" id="itemOptions43">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="item37">
+                <div class="itemHeader">
+                    <h1><a href="https://www.edx.org/"> edX </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont37"></div>
+
+                    <div class="itemOptions" id="itemOptions37">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="item41">
+                <div class="itemHeader">
+                    <h1><a href="http://ocw.mit.edu/index.htm"> MIT Open Courseware </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont41"></div>
+
+                    <div class="itemOptions" id="itemOptions41">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="item49">
+                <div class="itemHeader">
+                    <h1><a href="http://academicearth.org/"> Academic Earth </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont49"></div>
+
+                    <div class="itemOptions" id="itemOptions49">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="item51">
+                <div class="itemHeader">
+                    <h1><a href="https://www.youtube.com/edu"> youtube.com/edu </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont51"></div>
+
+                    <div class="itemOptions" id="itemOptions51">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="item46">
+                <div class="itemHeader">
+                    <h1><a href="https://code.org/"> code.org </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont46"></div>
+
+                    <div class="itemOptions" id="itemOptions46">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="item47">
+                <div class="itemHeader">
+                    <h1><a href="http://oyc.yale.edu/"> Open Yale Courses </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont47"></div>
+
+                    <div class="itemOptions" id="itemOptions47">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="item39">
+                <div class="itemHeader">
+                    <h1><a href="https://www.coursera.org/"> Coursera </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont39"></div>
+
+                    <div class="itemOptions" id="itemOptions39">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="item38">
+                <div class="itemHeader">
+                    <h1><a href="https://teamtreehouse.com/"> treehouse </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont38"></div>
+
+                    <div class="itemOptions" id="itemOptions38">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="item52">
+                <div class="itemHeader">
+                    <h1><a href="http://bigthink.com/"> Big Think </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont52"></div>
+
+                    <div class="itemOptions" id="itemOptions52">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="item45">
+                <div class="itemHeader">
+                    <h1><a href="https://lagunita.stanford.edu/"> Stanford Online </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont45"></div>
+
+                    <div class="itemOptions" id="itemOptions45">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="item36">
+                <div class="itemHeader">
+                    <h1><a href="https://www.codecademy.com/"> codecademy </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont36"></div>
+
+                    <div class="itemOptions" id="itemOptions36">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="item48">
+                <div class="itemHeader">
+                    <h1><a href="https://www.lynda.com/"> Lynda </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont48"></div>
+
+                    <div class="itemOptions" id="itemOptions48">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="item44">
+                <div class="itemHeader">
+                    <h1><a href="https://www.udemy.com/"> Udemy </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont44"></div>
+
+                    <div class="itemOptions" id="itemOptions44">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="item42">
+                <div class="itemHeader">
+                    <h1><a href="https://www.brightstorm.com/"> Brightstorm </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont42"></div>
+
+                    <div class="itemOptions" id="itemOptions42">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+            
+        </div>
+    </div>
+{% endblock %}

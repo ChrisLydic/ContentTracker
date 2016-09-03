@@ -1,0 +1,480 @@
+{% extends 'sample/base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    Movies | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="contentWrapper">
+        <nav class="mCustomScrollbar" data-mcs-theme="minimal-dark">
+
+            <a href="/lists/sample/1/"> <section> Projects </section> </a>
+            <a href="/lists/sample/2/"> <section> TV Shows </section> </a>
+            <a> <section class="currSection"> Movies </section> </a>
+            <a href="/lists/sample/4/"> <section> Tutorials </section> </a>
+            <a href="/lists/sample/5/"> <section> Books </section> </a>
+            <a href="/lists/sample/6/"> <section> Educational Websites </section> </a>
+            <a href="/lists/sample/7/"> <section> Anime </section> </a>
+            <a href="/lists/sample/8/"> <section> Textbooks </section> </a>
+            <a href="/lists/sample/9/"> <section> Videogames </section> </a>
+
+        </nav>
+        
+        <div class="listWrapper mCustomScrollbar" data-mcs-theme="minimal" id="3">
+            
+            
+            <section id="itemForm">
+
+                <form style="display:none;" id="customBook" name="searchForm">
+
+                    <div>
+                        <label for="id_name">Name</label>
+                        <input id="id_name" maxlength="100" name="name" type="text" required />
+                    </div>
+
+                    <div>
+                        <label for="id_description">Description</label>
+                        <input id="id_description" maxlength="500" name="description" type="text" />
+                    </div>
+
+                    <div>
+                        <label for="id_cover">Image URL</label>
+                        <input id="id_cover" maxlength="2000" name="cover" placeholder="http://" type="url" />
+                    </div>
+                        
+                    <div>
+                        <label for="id_runtime">Runtime (minutes)</label>
+                        <input id="id_runtime" min="0" name="runtime" type="number" value="0" required />
+                    </div>
+
+                    <div>
+                        <label for="id_directors">Director(s)</label>
+                        <input id="id_directors" maxlength="200" name="directors" type="text" />
+                    </div>
+
+                    <div>
+                        <label for="id_imdbId"></label>
+                        <input id="id_imdbId" maxlength="20" name="imdbId" type="hidden" />
+                    </div>
+                        
+                    <div>
+                        <label for="id_imdbRating"></label>
+                        <input id="id_imdbRating" name="imdbRating" type="hidden" />
+                    </div>
+
+                    <div>
+                        <label for="id_metascore"></label>
+                        <input id="id_metascore" name="metascore" type="hidden" />
+                    </div>
+
+                    <div class="button">
+                        <input type="button" value="Create Item"
+                            onclick="alert( 'This functionality is not available for sample content' )">
+                        <input type="button" id="searchButton" onclick="showSearch()" value="Use Search">
+                        <input type="button" onclick="hideNewItem()" value="Exit">
+                    </div>
+                
+                </form>
+                
+                <form id="searchMovie" onsubmit="return false;">
+                    <div>
+                        <input type="text" placeholder="Search The Open Movie Database" id="searchData">
+                        <div id="searchWrapper" class="mCustomScrollbar" data-mcs-theme="minimal-dark">
+                        </div>
+                    </div>
+                    <input type="submit" onclick="search()" value="Search">
+                    <input type="button" onclick="showCustom()" value="Create Custom Item">
+                    <input type="button" onclick="hideNewItem()" value="Exit">
+                </form>
+
+            </section>
+
+            <section id="item94">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Fargo </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont94"></div>
+
+                    <div class="itemOptions" id="itemOptions94">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+
+                    <div class="checkWrapper" id="checkWrapper94">
+                        <a class="checkbox"></a>
+                    </div>
+                </div>
+
+                <div class="descWrapper">
+                    <img src="http://ia.media-imdb.com/images/M/MV5BMTgxNzY3MzUxOV5BMl5BanBnXkFtZTcwMDA0NjMyNA@@._V1_SX300.jpg">
+
+                    <div>
+                        <div class="extraDesc">
+                            <p> Joel Coen, Ethan Coen </p>
+                            <p> <span id="unit94">98</span> minutes </p>
+                        </div>
+
+                        <p> Jerry Lundegaard&#39;s inept crime falls apart due to his and his henchmen&#39;s bungling and the persistent police work of the quite pregnant Marge Gunderson. </p>
+
+                        <p>
+                            <a href="http://www.imdb.com/title/tt0116282">
+                            IMDB:</a>
+                            8.2, Metascore: 85
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="item20">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Star Wars: Episode IV - A New Hope </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont20"></div>
+
+                    <div class="itemOptions" id="itemOptions20">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+
+                    <div class="checkWrapper" id="checkWrapper20">
+                        <a class="checkbox"></a>
+                    </div>
+                </div>
+
+                <div class="descWrapper">
+                    <img src="http://ia.media-imdb.com/images/M/MV5BOTIyMDY2NGQtOGJjNi00OTk4LWFhMDgtYmE3M2NiYzM0YTVmXkEyXkFqcGdeQXVyNTU1NTcwOTk@._V1_SX300.jpg">
+
+                    <div>
+                        <div class="extraDesc">
+                            <p> George Lucas </p>
+                            <p> <span id="unit20">121</span> minutes </p>
+                        </div>
+
+                        <p> Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a wookiee and two droids to save the galaxy from the Empire&#39;s world-destroying battle-station, while also attempting to rescue Princess Leia from the evil Darth Vader. </p>
+
+                        <p>
+                            <a href="http://www.imdb.com/title/tt0076759">
+                            IMDB:</a>
+                            8.7, Metascore: 92
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="item19">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Reservoir Dogs </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont19"></div>
+
+                    <div class="itemOptions" id="itemOptions19">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+
+                    <div class="checkWrapper" id="checkWrapper19">
+                        <a class="checkbox"></a>
+                    </div>
+                </div>
+
+                <div class="descWrapper">
+                    <img src="http://ia.media-imdb.com/images/M/MV5BNWVhMzQ5MWUtNjZkNC00MGQwLTkzNmEtNjcyZDE2ZWYxNzc2XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg">
+
+                    <div>
+                        <div class="extraDesc">
+                            <p> Quentin Tarantino </p>
+                            <p> <span id="unit19">99</span> minutes </p>
+                        </div>
+
+                        <p> After a simple jewelry heist goes terribly wrong, the surviving criminals begin to suspect that one of them is a police informant. </p>
+
+                        <p>
+                            <a href="http://www.imdb.com/title/tt0105236">
+                            IMDB:</a>
+                            8.4, Metascore: 78
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="item17" style="opacity: 0.4">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Airplane! </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont17" style="background-color: #DCE8E8"></div>
+
+                    <div class="itemOptions" id="itemOptions17">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+
+                    <div class="checkWrapper" id="checkWrapper17">
+                        <a class="checkboxSelected"></a>
+                    </div>
+                </div>
+
+                <div class="descWrapper">
+                    <img src="http://ia.media-imdb.com/images/M/MV5BNDU2MjE4MTcwNl5BMl5BanBnXkFtZTgwNDExOTMxMDE@._V1_SX300.jpg">
+
+                    <div>
+                        <div class="extraDesc">
+                            <p> Jim Abrahams, David Zucker, Jerry Zucker </p>
+                            <p> <span id="unit17">88</span> minutes </p>
+                        </div>
+
+                        <p> A man afraid to fly must ensure that a plane lands safely after the pilots become sick. </p>
+
+                        <p>
+                            <a href="http://www.imdb.com/title/tt0080339">
+                            IMDB:</a> 7.8
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="item15">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> No Country for Old Men </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont15"></div>
+
+                    <div class="itemOptions" id="itemOptions15">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+
+                    <div class="checkWrapper" id="checkWrapper15">
+                        <a class="checkbox"></a>
+                    </div>
+                </div>
+
+                <div class="descWrapper">
+                    <img src="http://ia.media-imdb.com/images/M/MV5BMjA5Njk3MjM4OV5BMl5BanBnXkFtZTcwMTc5MTE1MQ@@._V1_SX300.jpg">
+
+                    <div>
+                        <div class="extraDesc">
+                            <p> Ethan Coen, Joel Coen </p>
+                            <p> <span id="unit15">122</span> minutes </p>
+                        </div>
+
+                        <p> Violence and mayhem ensue after a hunter stumbles upon a drug deal gone wrong and more than two million dollars in cash near the Rio Grande. </p>
+
+                        <p>
+                            <a href="http://www.imdb.com/title/tt0477348">
+                            IMDB:</a>
+                            8.1, Metascore: 91
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="item18">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> The Departed </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont18"></div>
+
+                    <div class="itemOptions" id="itemOptions18">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+
+                    <div class="checkWrapper" id="checkWrapper18">
+                        <a class="checkbox"></a>
+                    </div>
+                </div>
+
+                <div class="descWrapper">
+                    <img src="http://ia.media-imdb.com/images/M/MV5BMTI1MTY2OTIxNV5BMl5BanBnXkFtZTYwNjQ4NjY3._V1_SX300.jpg">
+
+                    <div>
+                        <div class="extraDesc">
+                            <p> Martin Scorsese </p>
+                            <p> <span id="unit18">151</span> minutes </p>
+                        </div>
+
+                        <p> An undercover cop and a mole in the police attempt to identify each other while infiltrating an Irish gang in South Boston. </p>
+
+                        <p>
+                            <a href="http://www.imdb.com/title/tt0407887">
+                            IMDB:</a>
+                            8.5, Metascore: 86
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="item14">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> 12 Angry Men </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont14"></div>
+
+                    <div class="itemOptions" id="itemOptions14">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+
+                    <div class="checkWrapper" id="checkWrapper14">
+                        <a class="checkbox"></a>
+                    </div>
+                </div>
+
+                <div class="descWrapper">
+                    <img src="http://ia.media-imdb.com/images/M/MV5BODQwOTc5MDM2N15BMl5BanBnXkFtZTcwODQxNTEzNA@@._V1_SX300.jpg">
+
+                    <div>
+                        <div class="extraDesc">
+                            <p> Sidney Lumet </p>
+                            <p> <span id="unit14">96</span> minutes </p>
+                        </div>
+
+                        <p> A jury holdout attempts to prevent a miscarriage of justice by forcing his colleagues to reconsider the evidence. </p>
+
+                        <p>
+                            <a href="http://www.imdb.com/title/tt0050083">
+                            IMDB:</a> 8.9
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="item16">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Finding Nemo </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont16"></div>
+
+                    <div class="itemOptions" id="itemOptions16">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+
+                    <div class="checkWrapper" id="checkWrapper16">
+                        <a class="checkbox"></a>
+                    </div>
+                </div>
+
+                <div class="descWrapper">
+                    <img src="http://ia.media-imdb.com/images/M/MV5BOTdhMTQzNTMtNTkwZC00ZTAwLTgwMmEtNGJhOGViYWNhMTc4XkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_SX300.jpg">
+
+                    <div>
+                        <div class="extraDesc">
+                            <p> Andrew Stanton, Lee Unkrich </p>
+                            <p> <span id="unit16">100</span> minutes </p>
+                        </div>
+
+                        <p> After his son is captured in the Great Barrier Reef and taken to Sydney, a timid clownfish sets out on a journey to bring him home. </p>
+
+                        <p>
+                            <a href="http://www.imdb.com/title/tt0266543">
+                            IMDB:</a>
+                            8.2, Metascore: 90
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="item13" style="opacity: 0.4">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> The Hunger Games </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont13" style="background-color: #DCE8E8"></div>
+
+                    <div class="itemOptions" id="itemOptions13">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+
+                    <div class="checkWrapper" id="checkWrapper13">
+                        <a class="checkboxSelected"></a>
+                    </div>
+                </div>
+
+                <div class="descWrapper">
+                    <img src="http://ia.media-imdb.com/images/M/MV5BMjA4NDg3NzYxMF5BMl5BanBnXkFtZTcwNTgyNzkyNw@@._V1_SX300.jpg">
+
+                    <div>
+                        <div class="extraDesc">
+                            <p> Gary Ross </p>
+                            <p> <span id="unit13">142</span> minutes </p>
+                        </div>
+
+                        <p> Katniss Everdeen voluntarily takes her younger sister&#39;s place in the Hunger Games, a televised competition in which two teenagers from each of the twelve Districts of Panem are chosen at random to fight to the death. </p>
+
+                        <p>
+                            <a href="http://www.imdb.com/title/tt1392170">
+                            IMDB:</a>
+                            7.3, Metascore: 68
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,801 @@
+{% extends 'sample/base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    Videogames | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="contentWrapper">
+        <nav class="mCustomScrollbar" data-mcs-theme="minimal-dark">
+
+            <a href="/lists/sample/1/"> <section> Projects </section> </a>
+            <a href="/lists/sample/2/"> <section> TV Shows </section> </a>
+            <a href="/lists/sample/3/"> <section> Movies </section> </a>
+            <a href="/lists/sample/4/"> <section> Tutorials </section> </a>
+            <a href="/lists/sample/5/"> <section> Books </section> </a>
+            <a href="/lists/sample/6/"> <section> Educational Websites </section> </a>
+            <a href="/lists/sample/7/"> <section> Anime </section> </a>
+            <a href="/lists/sample/8/"> <section> Textbooks </section> </a>
+            <a> <section class="currSection"> Videogames </section> </a>
+
+        </nav>
+        
+        <div class="listWrapper mCustomScrollbar" data-mcs-theme="minimal" id="10">
+
+            <section id="itemForm">
+
+                <form id="customBook" name="searchForm">
+
+                    <div>
+                        <label for="id_name">Name</label>
+                        <input id="id_name" maxlength="100" name="name" type="text" required />
+                    </div>
+
+                    <div>
+                        <label for="id_description">Description</label>
+                        <input id="id_description" maxlength="500" name="description" type="text" />
+                    </div>
+
+                    <div class="button">
+                        <input type="button" value="Create Item"
+                            onclick="alert( 'This functionality is not available for sample content' )">
+                        <input type="button" onclick="hideNewItem()" value="Exit">
+                    </div>
+                
+                </form>
+
+            </section>
+    
+            <section id="item93">
+            
+            
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Super Smash Bros. Brawl </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont93"></div>
+                    
+                    <div class="itemOptions" id="itemOptions93">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item92">
+            
+            
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Mario Kart 8 </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont92"></div>
+                    
+                    <div class="itemOptions" id="itemOptions92">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item91">
+            
+            
+                <div class="itemHeader">
+                    <h1><a class="nolink"> New Super Mario Bros. </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont91"></div>
+                    
+                    <div class="itemOptions" id="itemOptions91">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item90">
+            
+            
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Mario &amp; Luigi: Superstar Saga </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont90"></div>
+                    
+                    <div class="itemOptions" id="itemOptions90">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item89">
+            
+            
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Dragon Quest Heroes: Rocket Slime </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont89"></div>
+                    
+                    <div class="itemOptions" id="itemOptions89">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item88">
+            
+            
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Goat Simulator </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont88"></div>
+                    
+                    <div class="itemOptions" id="itemOptions88">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item87">
+            
+            
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Far Cry 2 </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont87"></div>
+                    
+                    <div class="itemOptions" id="itemOptions87">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item86">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Pokemon Omega Ruby </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont86"></div>
+                    
+                    <div class="itemOptions" id="itemOptions86">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item85">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Pokemon White </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont85"></div>
+                    
+                    <div class="itemOptions" id="itemOptions85">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item84">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Pokemon Ruby </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont84"></div>
+                    
+                    <div class="itemOptions" id="itemOptions84">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item83">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Pokemon Gold </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont83"></div>
+                    
+                    <div class="itemOptions" id="itemOptions83">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item82">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Pokemon Yellow </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont82"></div>
+                    
+                    <div class="itemOptions" id="itemOptions82">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item81">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Pokemon Red </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont81"></div>
+                    
+                    <div class="itemOptions" id="itemOptions81">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item80">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Animal Crossing </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont80"></div>
+                    
+                    <div class="itemOptions" id="itemOptions80">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item79">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Stardew Valley </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont79"></div>
+                    
+                    <div class="itemOptions" id="itemOptions79">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item78">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Starbound </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont78"></div>
+                    
+                    <div class="itemOptions" id="itemOptions78">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item77">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> The Stanley Parable </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont77"></div>
+                    
+                    <div class="itemOptions" id="itemOptions77">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item76">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> XCOM: Enemy Unknown </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont76"></div>
+                    
+                    <div class="itemOptions" id="itemOptions76">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item75">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> The Elder Scrolls III: Morrowind </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont75"></div>
+                    
+                    <div class="itemOptions" id="itemOptions75">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item74">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> The Elder Scrolls IV: Oblivion </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont74"></div>
+                    
+                    <div class="itemOptions" id="itemOptions74">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item73">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> The Elder Scrolls V: Skyrim </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont73"></div>
+                    
+                    <div class="itemOptions" id="itemOptions73">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item72">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Batman: Arkham Asylum </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont72"></div>
+                    
+                    <div class="itemOptions" id="itemOptions72">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item71">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Just Cause 2 </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont71"></div>
+                    
+                    <div class="itemOptions" id="itemOptions71">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item70">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Mount &amp; Blade </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont70"></div>
+                    
+                    <div class="itemOptions" id="itemOptions70">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item69">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Civilization V </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont69"></div>
+                    
+                    <div class="itemOptions" id="itemOptions69">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item68">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Spec Ops: The Line </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont68"></div>
+                    
+                    <div class="itemOptions" id="itemOptions68">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item67">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Terraria </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont67"></div>
+                    
+                    <div class="itemOptions" id="itemOptions67">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item66">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Scribblenauts Unlimited </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont66"></div>
+                    
+                    <div class="itemOptions" id="itemOptions66">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item65">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Portal 2 </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont65"></div>
+                    
+                    <div class="itemOptions" id="itemOptions65">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item64">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Portal </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont64"></div>
+                    
+                    <div class="itemOptions" id="itemOptions64">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item63">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> LIMBO </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont63"></div>
+                    
+                    <div class="itemOptions" id="itemOptions63">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item62">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> The Witcher 3 </a>
+                    </h1>
+                        
+                    <div class="barWrapper" id="barCont62"></div>
+                    
+                    <div class="itemOptions" id="itemOptions62">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item61">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Fallout 4 </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont61"></div>
+
+                    <div class="itemOptions" id="itemOptions61">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item60">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Minecraft </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont60"></div>
+
+                    <div class="itemOptions" id="itemOptions60">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+        
+            
+            <section id="item59">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Crysis </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont59"></div>
+                    
+                    <div class="itemOptions" id="itemOptions59">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+            
+        </div>
+        
+    </div>
+{% endblock %}

@@ -1,0 +1,371 @@
+{% extends 'sample/base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    TV Shows | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="contentWrapper">
+        <nav class="mCustomScrollbar" data-mcs-theme="minimal-dark">
+
+            <a href="/lists/sample/1/"> <section> Projects </section> </a>
+            <a> <section class="currSection"> TV Shows </section> </a>
+            <a href="/lists/sample/3/"> <section> Movies </section> </a>
+            <a href="/lists/sample/4/"> <section> Tutorials </section> </a>
+            <a href="/lists/sample/5/"> <section> Books </section> </a>
+            <a href="/lists/sample/6/"> <section> Educational Websites </section> </a>
+            <a href="/lists/sample/7/"> <section> Anime </section> </a>
+            <a href="/lists/sample/8/"> <section> Textbooks </section> </a>
+            <a href="/lists/sample/9/"> <section> Videogames </section> </a>
+
+        </nav>
+        
+        <div class="listWrapper mCustomScrollbar" data-mcs-theme="minimal" id="2">
+            
+            
+            <section id="itemForm">
+
+                <form style="display:none;" id="customBook" name="searchForm">
+
+                    <div>
+                        <label for="id_name">Name</label>
+                        <input id="id_name" maxlength="100" name="name" type="text" required />
+                    </div>
+
+                    <div>
+                        <label for="id_description">Description</label>
+                        <input id="id_description" maxlength="500" name="description" type="text" />
+                    </div>
+
+                    <div>
+                        <label for="id_cover">Image URL</label>
+                        <input id="id_cover" maxlength="2000" name="cover" placeholder="http://" type="url" />
+                    </div>
+
+                    <div>
+                        <label for="id_seasons">Seasons</label>
+                        <input id="id_seasons" min="0" name="seasons" type="number" value="0" required />
+                    </div>
+
+                    <div>
+                        <label for="id_writers">Writer(s)</label>
+                        <input id="id_writers" maxlength="200" name="writers" type="text" />
+                    </div>
+
+                    <div>
+                        <label for="id_imdbId"></label>
+                        <input id="id_imdbId" maxlength="20" name="imdbId" type="hidden" />
+                    </div>
+                        
+                    <div>
+                        <label for="id_imdbRating"></label>
+                        <input id="id_imdbRating" name="imdbRating" type="hidden" />
+                    </div>
+
+                    <div>
+                        <label for="id_metascore"></label>
+                        <input id="id_metascore" name="metascore" type="hidden" />
+                    </div>
+
+                    <div class="button">
+                        <input type="button" value="Create Item"
+                            onclick="alert( 'This functionality is not available for sample content' )">
+                        <input type="button" id="searchButton" onclick="showSearch()" value="Use Search">
+                        <input type="button" onclick="hideNewItem()" value="Exit">
+                    </div>
+                
+                </form>
+
+                <form id="searchShow" onsubmit="return false;">
+                    <div>
+                        <input type="text" placeholder="Search The Open Movie Database" id="searchData">
+                        <div id="searchWrapper" class="mCustomScrollbar" data-mcs-theme="minimal-dark">
+                        </div>
+                    </div>
+                    <input type="submit" onclick="search()" value="Search">
+                    <input type="button" onclick="showCustom()" value="Create Custom Item">
+                    <input type="button" onclick="hideNewItem()" value="Exit">
+                </form>
+
+            </section>
+        
+
+
+            <section id="item8" style="opacity: 0.4">
+
+
+                <div class="itemHeader"><h1><a class="nolink"> Game of Thrones </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont8" style="background-color: #DCE8E8">
+                            <div class="bar" id="bar8"
+                            style="flex: 1.0 0 auto"></div>
+                        <div class="offset" id="barOffset8"
+                            style="flex: 0.0 0 auto"></div>
+                    </div>
+
+                    <div class="itemOptions" id="itemOptions8">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+
+                <div class="descWrapper">
+
+                    <img src="http://ia.media-imdb.com/images/M/MV5BMjM5OTQ1MTY5Nl5BMl5BanBnXkFtZTgwMjM3NzMxODE@._V1_SX300.jpg">
+
+                    <div>
+                        <div class="extraDesc">
+                            <p> David Benioff, D.B. Weiss </p>
+                            <p> <span id="unit8">7</span> seasons </p>
+                        </div>
+
+                        <p> While a civil war brews between several noble families in Westeros, the children of the former rulers of the land attempt to rise up to power. Meanwhile a forgotten race, bent on destruction, plans to return after thousands of years in the North. </p>
+
+                        <p>
+                            <a href="http://www.imdb.com/title/tt0944947">
+                            IMDB:</a> 9.5
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="item11">
+
+
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Person of Interest </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont11">
+                        <div class="bar" id="bar11"
+                            style="flex: 0.13 0 auto"></div>
+                        <div class="offset" id="barOffset11"
+                            style="flex: 0.87 0 auto"></div>
+                    </div>
+
+                    <div class="itemOptions" id="itemOptions11">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+
+                <div class="descWrapper">
+
+                    <img src="http://ia.media-imdb.com/images/M/MV5BMTcyODc4OTU1N15BMl5BanBnXkFtZTcwODAwMjYyOQ@@._V1_SX300.jpg">
+
+                    <div>
+                        <div class="extraDesc">
+                            <p> Jonathan Nolan </p>
+                            <p> <span id="unit11">5</span> seasons </p>
+                        </div>
+
+                        <p> An ex-assassin and a wealthy programmer save lives via a surveillance AI that sends them the identities of civilians involved in impending crimes. However, the details of the crimes--including the civilians&#39; roles--are left a mystery. </p>
+
+                        <p>
+                            <a href="http://www.imdb.com/title/tt1839578">
+                            IMDB:</a> 8.5
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="item12">
+
+
+                <div class="itemHeader">
+                    <h1><a class="nolink"> M*A*S*H </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont12">
+                        <div class="bar" id="bar12"
+                            style="flex: 0.75 0 auto"></div>
+                        <div class="offset" id="barOffset12"
+                            style="flex: 0.25 0 auto"></div>
+                    </div>
+
+                    <div class="itemOptions" id="itemOptions12">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+
+                <div class="descWrapper">
+
+                    <img src="http://ia.media-imdb.com/images/M/MV5BMTQ3OTM1NjM5MF5BMl5BanBnXkFtZTcwMTI5NDY0MQ@@._V1_SX300.jpg">
+
+                    <div>
+                        <div class="extraDesc">
+                            <p> Larry Gelbart </p>
+                            <p> <span id="unit12">11</span> seasons </p>
+                        </div>
+
+                        <p> The staff of an army hospital in the Korean war find that laughter is the best way to deal with their situation. </p>
+
+                        <p>
+                            <a href="http://www.imdb.com/title/tt0068098">
+                            IMDB:</a> 8.4
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="item10">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Gravity Falls </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont10">
+                        <div class="bar" id="bar10"
+                            style="flex: 0.24 0 auto"></div>
+                        <div class="offset" id="barOffset10"
+                            style="flex: 0.76 0 auto"></div>
+                    </div>
+
+                    <div class="itemOptions" id="itemOptions10">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+
+                <div class="descWrapper">
+
+                    <img src="http://ia.media-imdb.com/images/M/MV5BMTEzNDc3MDQ2NzNeQTJeQWpwZ15BbWU4MDYzMzUwMDIx._V1_SX300.jpg">
+
+                    <div>
+                        <div class="extraDesc">
+                            <p> Alex Hirsch </p>
+                            <p> <span id="unit10">2</span> seasons </p>
+                        </div>
+
+                        <p> Twin siblings Dipper and Mabel Pines spend the summer at their great-uncle&#39;s tourist trap and must unlock the secrets surrounding the enigmatic town of Gravity Falls, Oregon. </p>
+
+                        <p>
+                            <a href="http://www.imdb.com/title/tt1865718">
+                            IMDB:</a> 8.9
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="item9" style="opacity: 0.4">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Futurama </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont9" style="background-color: #DCE8E8">
+                        <div class="bar" id="bar9"
+                            style="flex: 1.0 0 auto"></div>
+                        <div class="offset" id="barOffset9"
+                            style="flex: 0.0 0 auto"></div>
+                    </div>
+
+                    <div class="itemOptions" id="itemOptions9">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+
+                <div class="descWrapper">
+
+                    <img src="http://ia.media-imdb.com/images/M/MV5BMTAwMTgzNjQ3MDdeQTJeQWpwZ15BbWU2MDQ4NzY3Nw@@._V1_SX300.jpg">
+
+                    <div>
+                        <div class="extraDesc">
+                            <p> David X. Cohen, Matt Groening </p>
+                            <p> <span id="unit9">7</span> seasons </p>
+                        </div>
+
+                        <p> Fry, a pizza guy, is accidentally frozen in 1999 and thawed out New Year&#39;s Eve 2999. </p>
+
+                        <p>
+                            <a href="http://www.imdb.com/title/tt0149460">
+                            IMDB:</a> 8.6
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="item7">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Pokémon </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont7">
+                        <div class="bar" id="bar7"
+                            style="flex: 0.81 0 auto"></div>
+                        <div class="offset" id="barOffset7"
+                            style="flex: 0.18999999999999995 0 auto"></div>
+                    </div>
+
+                    <div class="itemOptions" id="itemOptions7">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+
+                <div class="descWrapper">
+
+                    <img src="http://ia.media-imdb.com/images/M/MV5BMTYxODg4NjkxM15BMl5BanBnXkFtZTcwOTEwMTUzMQ@@._V1_SX300.jpg">
+
+                    <div>
+                        <div class="extraDesc">
+                            <p> Satoshi Tajiri, Junichi Masuda, Ken Sugimori </p>
+                            <p> <span id="unit7">19</span> seasons </p>
+                        </div>
+
+                        <p> The adventures of Ash Ketchum and his partner Pikachu, who travel across many regions in hopes of being regarded as a Pokemon master. </p>
+
+                        <p>
+                            <a href="http://www.imdb.com/title/tt0176385">
+                            IMDB:</a> 7.4
+                        </p>
+                    </div>
+                </div>
+            </section>
+            
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,200 @@
+{% extends 'sample/base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    Projects | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="contentWrapper">
+        <nav class="mCustomScrollbar" data-mcs-theme="minimal-dark">
+
+            <a> <section class="currSection"> Projects </section> </a>
+            <a href="/lists/sample/2/"> <section> TV Shows </section> </a>
+            <a href="/lists/sample/3/"> <section> Movies </section> </a>
+            <a href="/lists/sample/4/"> <section> Tutorials </section> </a>
+            <a href="/lists/sample/5/"> <section> Books </section> </a>
+            <a href="/lists/sample/6/"> <section> Educational Websites </section> </a>
+            <a href="/lists/sample/7/"> <section> Anime </section> </a>
+            <a href="/lists/sample/8/"> <section> Textbooks </section> </a>
+            <a href="/lists/sample/9/"> <section> Videogames </section> </a>
+
+        </nav>
+        
+        <div class="listWrapper mCustomScrollbar" data-mcs-theme="minimal" id="1">
+            
+            <section id="itemForm">
+                <form id="customBook" name="searchForm">
+
+                    <div>
+                        <label for="id_name">Name</label>
+                        <input id="id_name" maxlength="100" name="name" type="text" required />
+                    </div>
+
+                    <div class="button">
+                        <input type="button" value="Create Item"
+                            onclick="alert( 'This functionality is not available for sample content' )">
+                        <input type="button" onclick="hideNewItem()" value="Exit">
+                    </div>
+                
+                </form>
+            </section>
+                
+            <section id="item5">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> CS1 Final Project </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont5">
+                        <div class="bar" id="bar5"
+                            style="flex: 0.37 0 auto"></div>
+                        <div class="offset" id="barOffset5"
+                            style="flex: 0.63 0 auto"></div>
+                    </div>
+
+                    <div class="itemOptions" id="itemOptions5">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="item4">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Todo App </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont4">
+                        <div class="bar" id="bar4"
+                            style="flex: 0.72 0 auto"></div>
+                        <div class="offset" id="barOffset4"
+                            style="flex: 0.28 0 auto"></div>
+                    </div>
+
+                    <div class="itemOptions" id="itemOptions4">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="item6">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Master Plan </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont6">
+                        <div class="bar" id="bar6"
+                            style="flex: 0.87 0 auto"></div>
+                        <div class="offset" id="barOffset6"
+                            style="flex: 0.13 0 auto"></div>
+                    </div>
+
+                    <div class="itemOptions" id="itemOptions6">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="item3" style="opacity: 0.4">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Personal Website </a>
+                    </h1>
+
+                <div class="barWrapper" id="barCont3" style="background-color: #DCE8E8">
+                        <div class="bar" id="bar3"
+                            style="flex: 1.0 0 auto"></div>
+                        <div class="offset" id="barOffset3"
+                            style="flex: 0.0 0 auto"></div>
+                    </div>
+
+                    <div class="itemOptions" id="itemOptions3">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="item1">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Biology Essay </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont1">
+                        <div class="bar" id="bar1"
+                            style="flex: 0.04 0 auto"></div>
+                        <div class="offset" id="barOffset1"
+                            style="flex: 0.96 0 auto"></div>
+                    </div>
+
+                    <div class="itemOptions" id="itemOptions1">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="item2">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Self Driving Car </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont2">
+                        <div class="bar" id="bar2"
+                            style="flex: 0.12 0 auto"></div>
+                        <div class="offset" id="barOffset2"
+                            style="flex: 0.88 0 auto"></div>
+                    </div>
+
+                    <div class="itemOptions" id="itemOptions2">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+                </div>
+            </section>
+            
+        </div>
+    </div>
+{% endblock %}

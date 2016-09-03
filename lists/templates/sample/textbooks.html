@@ -1,0 +1,205 @@
+{% extends 'sample/base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    Textbooks | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="contentWrapper">
+        <nav class="mCustomScrollbar" data-mcs-theme="minimal-dark">
+
+            <a href="/lists/sample/1/"> <section> Projects </section> </a>
+            <a href="/lists/sample/2/"> <section> TV Shows </section> </a>
+            <a href="/lists/sample/3/"> <section> Movies </section> </a>
+            <a href="/lists/sample/4/"> <section> Tutorials </section> </a>
+            <a href="/lists/sample/5/"> <section> Books </section> </a>
+            <a href="/lists/sample/6/"> <section> Educational Websites </section> </a>
+            <a href="/lists/sample/7/"> <section> Anime </section> </a>
+            <a> <section class="currSection"> Textbooks </section> </a>
+            <a href="/lists/sample/9/"> <section> Videogames </section> </a>
+
+        </nav>
+        
+        <div class="listWrapper mCustomScrollbar" data-mcs-theme="minimal" id="9">
+            
+            <section id="itemForm">
+
+                <form style="display:none;" id="customBook" name="searchForm">
+
+                    <div>
+                        <label for="id_name">Name</label>
+                        <input id="id_name" maxlength="100" name="name" type="text" required />
+                    </div>
+
+                    <div>
+                        <label for="id_description">Description</label>
+                        <input id="id_description" maxlength="500" name="description" type="text" />
+                    </div>
+
+                    <div>
+                        <label for="id_cover">Image URL</label>
+                        <input id="id_cover" maxlength="2000" name="cover" placeholder="http://" type="url" />
+                    </div>
+                        
+                    <div>
+                        <label for="id_pageNumber">Number of Pages</label>
+                        <input id="id_pageNumber" min="0" name="pageNumber" type="number" value="0" required />
+                    </div>
+
+                    <div>
+                        <label for="id_authors">Author(s)</label>
+                        <input id="id_authors" maxlength="200" name="authors" type="text" required />
+                    </div>
+
+                    <div>
+                        <label for="id_olid"></label>
+                        <input id="id_olid" maxlength="20" name="olid" type="hidden" />
+                    </div>
+
+                    <div class="button">
+                        <input type="button" value="Create Item"
+                            onclick="alert( 'This functionality is not available for sample content' )">
+                        <input type="button" id="searchButton" onclick="showSearch()" value="Use Search">
+                        <input type="button" onclick="hideNewItem()" value="Exit">
+                    </div>
+                
+                </form>
+
+                <form id="searchBook" onsubmit="return false;">
+                    <div>
+                        <input type="text" placeholder="Search openlibrary.org" id="searchData">
+                        <div id="searchWrapper" class="mCustomScrollbar" data-mcs-theme="minimal-dark">
+                        </div>
+                    </div>
+                    <input type="submit" onclick="search()" value="Search">
+                    <input type="button" onclick="showCustom()" value="Create Custom Item">
+                    <input type="button" onclick="hideNewItem()" value="Exit">
+                </form>
+
+            </section>
+
+            <section id="item58">
+                <div class="itemHeader">
+                    <h1><a class="nolink"> Economics </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont58"></div>
+
+                    <div class="itemOptions" id="itemOptions58">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+
+                    <div class="checkWrapper" id="checkWrapper58">
+                         <a class="checkbox"></a>
+                    </div>
+                </div>
+
+                <div class="descWrapper">
+                    <img src="https://t0.gstatic.com/images?q=tbn:ANd9GcRmQoAFHxx1aGo2zt6sD7bmNNYslppph23rB3yO5i2tdsfubaCu">
+
+                    <div>
+                        <div class="extraDesc">
+                            <p> Paul Krugman, Robin Wells </p>
+                            <p> <span id="unit58">1200</span> pages </p>
+                        </div>
+
+                        <p> (ISBN: 1464143846) </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="item56">
+                <div class="itemHeader">
+                    <h1><a href="https://openlibrary.org/books/OL7408807M"> Python </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont56"></div>
+
+                    <div class="itemOptions" id="itemOptions56">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+
+                    <div class="checkWrapper" id="checkWrapper56">
+                        <a class="checkbox"></a>
+                    </div>
+                </div>
+
+                <div class="descWrapper">
+                    <img src="https://covers.openlibrary.org/b/id/136177-M.jpg">
+
+                    <div class="extraDesc">
+                        <p> Chris Fehily </p>
+                        <p> <span id="unit56">440</span> pages </p>
+                    </div>
+
+                    <p> (ISBN: 9780201748840, 0201748843) </p>
+
+                    <p>
+                        <a href="https://openlibrary.org/books/OL7408807M">
+                        View on OpenLibrary
+                        </a>
+                    </p>
+                </div>
+            </section>
+
+            <section id="item55">
+                <div class="itemHeader">
+                    <h1><a href="https://openlibrary.org/books/OL9250208M"> Cultural Anthropology </a>
+                    </h1>
+
+                    <div class="barWrapper" id="barCont55"></div>
+
+                    <div class="itemOptions" id="itemOptions55">
+                        <img src="{% static 'lists/img/edit.png' %}"
+                            title="Edit">
+                        <img src="{% static 'lists/img/delete.png' %}"
+                            title="Delete">
+                        <img src="{% static 'lists/img/moveDown.png' %}"
+                            title="Move Down">
+                        <img src="{% static 'lists/img/moveUp.png' %}"
+                            title="Move Up">
+                    </div>
+
+                    <div class="checkWrapper" id="checkWrapper55">
+                        <a class="checkbox"></a>
+                    </div>
+                </div>
+
+                <div class="descWrapper">
+
+                    <img src="https://covers.openlibrary.org/b/id/54536-M.jpg">
+
+                    <div>
+                        <div class="extraDesc">
+                            <p> Kottak </p>
+                        </div>
+
+                        <p> (ISBN: 9780070369382, 0070369380) </p>
+
+                        <p>
+                            <a href="https://openlibrary.org/books/OL9250208M">
+                            View on OpenLibrary
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </section>
+            
+        </div>
+    </div>
+{% endblock %}
