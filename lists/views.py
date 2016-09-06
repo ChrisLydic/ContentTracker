@@ -7,11 +7,14 @@ from .items import getItems, getItem, makeItem
 from .forms import *
 import json
 
-"""
 
-"""
 @login_required
 def createList( request ):
+    """
+
+    :param request:
+    :return:
+    """
     form = ListForm( data=request.POST or None )
     user = request.user
     
@@ -44,11 +47,15 @@ def createList( request ):
     
     return render( request, 'lists/createList.html', { 'form': form, 'lists': lists, } )
 
-"""
 
-"""
 @login_required
 def viewList( request, listpk ):
+    """
+
+    :param request:
+    :param listpk:
+    :return:
+    """
     user = request.user
     currList = List.objects.get( pk=listpk, user=user )
 
@@ -92,11 +99,15 @@ def viewList( request, listpk ):
         'currList': currList,
     } )
 
-"""
 
-"""
 @login_required
 def editList( request, listpk ):
+    """
+
+    :param request:
+    :param listpk:
+    :return:
+    """
     user = request.user
     
     currList = List.objects.get( pk=listpk, user=user )
@@ -135,11 +146,15 @@ def editList( request, listpk ):
         'currList': currList,
     } )
 
-"""
 
-"""
 @login_required
 def deleteList( request, listpk ):
+    """
+
+    :param request:
+    :param listpk:
+    :return:
+    """
     user = request.user
     currList = List.objects.get( pk=listpk, user=user )
     
@@ -156,11 +171,16 @@ def deleteList( request, listpk ):
     return HttpResponseRedirect( '/lists/' + 
         str( currLists.order_by( 'position', 'dateCreated' ).first().pk ) + '/' )
 
-"""
 
-"""
 @login_required
 def editItem( request, listpk, itempk ):
+    """
+
+    :param request:
+    :param listpk:
+    :param itempk:
+    :return:
+    """
     if request.is_ajax() and request.method == 'POST':
         user = request.user
         currList = List.objects.get( pk=listpk, user=user )
@@ -323,11 +343,16 @@ def editItem( request, listpk, itempk ):
     else:
         raise Http404
 
-"""
 
-"""
 @login_required
 def editItemProgress( request, listpk, itempk ):
+    """
+
+    :param request:
+    :param listpk:
+    :param itempk:
+    :return:
+    """
     if request.is_ajax() and request.method == 'POST':
         user = request.user
         currItem = getItem( user, List.objects.get( user=user, pk=listpk ), itempk )
@@ -346,11 +371,17 @@ def editItemProgress( request, listpk, itempk ):
     else:
         raise Http404
 
-"""
 
-"""
 @login_required
 def moveItem( request, listpk, itempk, direction ):
+    """
+
+    :param request:
+    :param listpk:
+    :param itempk:
+    :param direction:
+    :return:
+    """
     if request.is_ajax() and request.method == 'POST':
         user = request.user
         currList = List.objects.get( pk=listpk )
@@ -379,11 +410,16 @@ def moveItem( request, listpk, itempk, direction ):
     else:
         raise Http404
 
-"""
 
-"""
 @login_required
 def deleteItem( request, listpk, itempk ):
+    """
+
+    :param request:
+    :param listpk:
+    :param itempk:
+    :return:
+    """
     if request.is_ajax() and request.method == 'POST':
         user = request.user
         currItem = getItem( user, List.objects.get( user=user, pk=listpk ), itempk )
@@ -399,10 +435,14 @@ def deleteItem( request, listpk, itempk ):
         raise Http404
 
 
-"""
-
-"""
 def viewSampleList( request, listpk ):
+    """
+    Displays appropriate sample list based on a fake list key
+
+    :param request:
+    :param listpk:
+    :return:
+    """
     if listpk == '1':
         return render( request, 'sample/projects.html' )
     elif listpk == '2':

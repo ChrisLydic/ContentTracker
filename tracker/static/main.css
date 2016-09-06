@@ -1,10 +1,11 @@
+/* Website fits window size */
 html, body {
     height: 100%;
 }
 
 body {
     margin: 0;
-    background-color: #03141d;
+    background-color: #03141D;
     font-family: 'Ubuntu Mono';
     color: #DCE8E8;
 }
@@ -18,10 +19,12 @@ header {
     background-color: #DCE8E8;
 }
 
+/* user links appear on right side */
 header .siteName, header .userLinks {
     flex: 0 0 auto;
 }
 
+/* list action links appear in middle when user is logged in */
 header .listLinks {
     flex: 1 1 auto;
     display: flex;
@@ -53,6 +56,7 @@ header .siteName a:hover {
     text-decoration: underline;
 }
 
+/* contains everything, including header */
 .siteWrapper {
     display: flex;
     flex-direction: column;
@@ -64,6 +68,7 @@ header .siteName a:hover {
     overflow: hidden;
 }
 
+/* Wraps list <nav> and current list item container  */
 .contentWrapper {
     flex: 1 1 auto;
     align-self: stretch;
@@ -74,7 +79,7 @@ header .siteName a:hover {
     overflow: hidden;
 }
 
-/* wraps info on homepage */
+/* Wraps info on homepage */
 .homeWrapper {
     flex: 1 1 auto;
     align-self: stretch;
@@ -84,6 +89,7 @@ header .siteName a:hover {
     overflow-y: auto;
     text-align: center;
 }
+/* Settings for items on homepage */
 .homeWrapper > div {
     flex: none;
     display: flex;
@@ -109,7 +115,7 @@ header .siteName a:hover {
     color: #DCE8E8;
 }
 
-/* list sidebar */
+/* List sidebar -- wraps a list of all the user's lists */
 nav {
     flex: 0 0 auto;
     align-self: stretch;
@@ -119,6 +125,7 @@ nav {
     overflow-x: hidden;
 }
 
+/* A single list in the list <nav> */
 nav section {
     max-width: 11rem;
     min-width: 5rem;
@@ -147,11 +154,12 @@ nav .currSection:hover {
     background-color: #03141d;
 }
 
+/* <a> wraps list sections */
 nav a {
     text-decoration: none;
 }
 
-/* sublists in list sidebar */
+/* Sublists in list sidebar, not implemented in backend yet
 nav .subNavWrapper{
     max-height: 0;
     transition: max-height .25s ease-out;
@@ -172,9 +180,10 @@ nav a:hover + .subNavWrapper {
 .subNavWrapper:hover {
     max-height: 500px;
     transition: max-height 0.25s ease-in;
-}
+}*/
 
-/* item and item wrapper css */
+/*** Item and item wrapper css ***/
+/* Wraps a collection of items from a single list */
 .listWrapper {
     flex: 1 1 auto;
     align-self: stretch;
@@ -184,6 +193,7 @@ nav a:hover + .subNavWrapper {
     overflow-x: hidden;
 }
 
+/* Contains a single item */
 .listWrapper section {
     margin: 0 15px 30px 0;
     max-width: 1400px;
@@ -191,10 +201,13 @@ nav a:hover + .subNavWrapper {
     transition: opacity 0.25s ease-in;
 }
 
+/* Items marked complete have low opacity
+   and will become opaque if hovered over */
 .listWrapper section:hover {
     opacity: 1 !important;
 }
 
+/* Item description */
 .listWrapper p {
     margin: 0;
     padding: 10px;
@@ -202,6 +215,7 @@ nav a:hover + .subNavWrapper {
     font-size: 1em;
 }
 
+/* descWrapper is for more complex item descriptions */
 .listWrapper .descWrapper {
     display: flex;
     flex-direction: row;
@@ -244,6 +258,7 @@ nav a:hover + .subNavWrapper {
     margin: 0 10px 0 0;
 }
 
+/* Contains item title, options, and progress */
 .itemHeader {
     display: flex;
     flex-direction: row;
@@ -283,6 +298,8 @@ nav a:hover + .subNavWrapper {
     text-decoration: none;
 }
 
+/* css for progress bar, barWrapper still appears in html ever when progress
+   bars are not being used because it is used for layout of itemHeader */
 .barWrapper {
     flex: 1 1 auto;
     align-self: stretch;
@@ -327,7 +344,8 @@ nav a:hover + .subNavWrapper {
     background-color: #DCE8E8;
 }
 
-/*.itemHeader:hover > .itemOptions {
+/* Unused animation for item options, will probably be added back in
+.itemHeader:hover > .itemOptions {
     max-width: 500px;
     transition: max-width 0.25s ease-in;
     padding: 0 10px 0 0;
@@ -343,31 +361,7 @@ nav a:hover + .subNavWrapper {
     opacity: 0.55;
 }
 
-.checkWrapper {
-    flex: 0 0 auto;
-    align-self: stretch;
-    display: flex;
-    align-items: center;
-
-    padding: 0 5px 0 5px;
-    background-color: #DCE8E8;
-}
-
-.checkWrapper .checkbox {
-    background-image: url( 'img/checkbox.png' );
-    height: 2rem;
-    width: 2rem;
-}
-
-.checkWrapper .checkboxSelected {
-    background-image: url( 'img/checkboxActive.png' );
-    height: 2rem;
-    width: 2rem;
-}
-
-
-/* Forms */
-
+/*** Forms ***/
 .formWrapper {
     flex: 1 1 auto;
     align-self: stretch;
@@ -473,11 +467,13 @@ input[type="button"]:active, input[type="submit"]:active {
     color: #DCE8E8;
 }
 
+/* Item forms are used for creating/editing items, and are not usually visible.
+   They are contained in <section> inside of the listWrapper. */
 #itemForm {
     display: none;
 }
 
-/* css for search functionality */
+/*** css for search box ***/
 #searchData {
     box-sizing: border-box;
     width: 600px;
@@ -545,16 +541,18 @@ input[type="button"]:active, input[type="submit"]:active {
 }
 
 .searchItem p {
-    /*margin: 0;*/
     color: #03141d;
     max-width: 600px;
     text-overflow: clip;
 }
 
+/* Format link at bottom of movie/tv search results
+   that are long enough for pagination */
 #pageLink {
     text-decoration: underline;
 }
 
+/* Responsive search box size */
 @media ( max-width: 1000px ) {
     #searchData {
         width: 300px;
@@ -565,7 +563,29 @@ input[type="button"]:active, input[type="submit"]:active {
     }
 }
 
-/* custom checkbox css */
+/* Custom checkbox css */
+.checkWrapper {
+    flex: 0 0 auto;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+
+    padding: 0 5px 0 5px;
+    background-color: #DCE8E8;
+}
+
+.checkWrapper .checkbox {
+    background-image: url( 'img/checkbox.png' );
+    height: 2rem;
+    width: 2rem;
+}
+
+.checkWrapper .checkboxSelected {
+    background-image: url( 'img/checkboxActive.png' );
+    height: 2rem;
+    width: 2rem;
+}
+
 .checkbox {
     background-image: url( 'img/checkbox.png' );
     background-size: cover;
