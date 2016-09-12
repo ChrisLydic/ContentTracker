@@ -184,7 +184,7 @@
                                     {% endif %}
                                 </div>
                             </div>
-                        {% elif currList.itemType == 'Show' %}
+                        {% elif currList.itemType == 'Show' or currList.itemType == 'Movie' %}
                             <div class="descWrapper">
                                 {% if item.cover != 'none' %}
                                     <img src="{{ item.cover }}">
@@ -192,43 +192,15 @@
                                 
                                 <div>
                                     <div class="extraDesc">
-                                        <p> {{ item.writers }} </p>
-                                        {% if item.seasons != 0 %}
-                                        <p> <span id="unit{{ item.pk }}">{{ item.seasons }}</span> {% getSeasonText item.seasons %} </p>
-                                        {% endif %}
-                                    </div>
-
-                                    <p> {{ item.description }} </p>
-
-                                    {% if item.useOmdb %}
-                                        {% if item.imdbRating != 0 and item.metascore != 0 %}
-                                            <p>
-                                                <a href="http://www.imdb.com/title/{{ item.imdbId }}">
-                                                IMDB:</a>
-                                                {{ item.imdbRating }}, Metascore: {{ item.metascore }}
+                                        <p> {{ item.creators }} </p>
+                                        {% if item.length != 0 %}
+                                            <p> <span id="unit{{ item.pk }}">{{ item.length }}</span>
+                                                {% if currList.itemType == 'Show' %}
+                                                    {% getSeasonText item.length %}
+                                                {% else %}
+                                                    minutes
+                                                {% endif %}
                                             </p>
-                                        {% elif item.imdbRating != 0 %}
-                                            <p>
-                                                <a href="http://www.imdb.com/title/{{ item.imdbId }}">
-                                                IMDB:</a> {{ item.imdbRating }}
-                                            </p>
-                                        {% elif item.metascore != 0 %}
-                                            <p>Metascore: {{ item.metascore }}</p>
-                                        {% endif %}
-                                    {% endif %}
-                                </div>
-                            </div>
-                        {% elif currList.itemType == 'Movie' %}
-                            <div class="descWrapper">
-                                {% if item.cover != 'none' %}
-                                    <img src="{{ item.cover }}">
-                                {% endif %}
-                                
-                                <div>
-                                    <div class="extraDesc">
-                                        <p> {{ item.directors }} </p>
-                                        {% if item.runtime != 0 %}
-                                        <p> <span id="unit{{ item.pk }}">{{ item.runtime }}</span> minutes </p>
                                         {% endif %}
                                     </div>
 

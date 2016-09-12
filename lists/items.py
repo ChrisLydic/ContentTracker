@@ -1,6 +1,17 @@
-from .models import Item, Link, Book, Show, Movie
+"""
+Helper functions for creating and retrieving items.
+"""
+from .models import Item, Link, Book, Video
+
 
 def getItem( user, list, itempk ):
+    """
+
+    :param user:
+    :param list:
+    :param itempk:
+    :return:
+    """
     itemType = list.itemType
 
     if itemType == 'Item':
@@ -9,14 +20,19 @@ def getItem( user, list, itempk ):
         item = Link.objects.get( pk=itempk, list=list, user=user )
     elif itemType == 'Book':
         item = Book.objects.get( pk=itempk, list=list, user=user )
-    elif itemType == 'Show':
-        item = Show.objects.get( pk=itempk, list=list, user=user )
-    elif itemType == 'Movie':
-        item = Movie.objects.get( pk=itempk, list=list, user=user )
+    elif itemType == 'Show' or itemType == 'Movie':
+        item = Video.objects.get( pk=itempk, list=list, user=user )
 
     return item
 
+
 def getItems( user, list ):
+    """
+
+    :param user:
+    :param list:
+    :return:
+    """
     itemType = list.itemType
 
     if itemType == 'Item':
@@ -25,14 +41,21 @@ def getItems( user, list ):
         itemSet = Link.objects.filter( list=list, user=user ).order_by( '-position' )
     elif itemType == 'Book':
         itemSet = Book.objects.filter( list=list, user=user ).order_by( '-position' )
-    elif itemType == 'Show':
-        itemSet = Show.objects.filter( list=list, user=user ).order_by( '-position' )
-    elif itemType == 'Movie':
-        itemSet = Movie.objects.filter( list=list, user=user ).order_by( '-position' )
+    elif itemType == 'Show' or itemType == 'Movie':
+        itemSet = Video.objects.filter( list=list, user=user ).order_by( '-position' )
 
     return itemSet
 
+
 def makeItem( user, list, cleanedData, currPos ):
+    """
+
+    :param user:
+    :param list:
+    :param cleanedData:
+    :param currPos:
+    :return:
+    """
     itemType = list.itemType
 
     if itemType == 'Item':
@@ -86,12 +109,12 @@ def makeItem( user, list, cleanedData, currPos ):
         )
         newItem.save()
     
-    elif itemType == 'Show':
+    elif itemType == 'Show' or itemType == 'Movie':
         cover = cleanedData.get( 'cover' )
         imdbId = cleanedData.get('imdbId')
         imdbRating = cleanedData.get('imdbRating')
         metascore = cleanedData.get('metascore')
-        writers = cleanedData.get('writers')
+        creators = cleanedData.get('creators')
         useOmdb = True
 
         if not imdbId:
@@ -103,10 +126,10 @@ def makeItem( user, list, cleanedData, currPos ):
         if not cover:
             cover = 'none'
         
-        if not writers:
-            writers = ''
+        if not creators:
+            creators = ''
 
-        newItem = Show(
+        newItem = Video(
             user=user,
             list=list,
             name=cleanedData.get('name'),
@@ -117,43 +140,7 @@ def makeItem( user, list, cleanedData, currPos ):
             cover=cover,
             imdbRating=imdbRating,
             metascore=metascore,
-            seasons=cleanedData.get('seasons'),
-            writers=writers
-        )
-        newItem.save()
-
-    elif itemType == 'Movie':
-        cover = cleanedData.get( 'cover' )
-        imdbId = cleanedData.get('imdbId')
-        imdbRating = cleanedData.get('imdbRating')
-        metascore = cleanedData.get('metascore')
-        directors = cleanedData.get('directors')
-        useOmdb = True
-
-        if not imdbId:
-            useOmdb = False
-            imdbId = 'none'
-            imdbRating = 0
-            metascore = 0
-        
-        if not cover:
-            cover = 'none'
-        
-        if not directors:
-            directors = ''
-
-        newItem = Movie(
-            user=user,
-            list=list,
-            name=cleanedData.get('name'),
-            description=cleanedData.get('description'),
-            position=currPos,
-            useOmdb=useOmdb,
-            imdbId=imdbId,
-            cover=cover,
-            imdbRating=imdbRating,
-            metascore=metascore,
-            runtime=cleanedData.get('runtime'),
-            directors=directors
+            length=cleanedData.get('length'),
+            creators=creators
         )
         newItem.save()

@@ -3,6 +3,11 @@ from django.http import HttpResponseRedirect
 from lists.models import List
 
 def home( request ):
+    """
+
+    :param request:
+    :return:
+    """
     user = request.user
     
     if user.is_authenticated():

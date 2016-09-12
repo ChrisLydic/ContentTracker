@@ -193,7 +193,7 @@ def editItem( request, listpk, itempk ):
 
         if not currList.hasDescription:
             args.update( { 'description': '' } )
-        
+
         if currList.itemType == 'Item':
             form = ItemForm( data={
                 'name': args['name'],
@@ -234,7 +234,7 @@ def editItem( request, listpk, itempk ):
                     if field.errors:
                         data['errors'].append( field.name.capitalize() + ': ' + field.errors.as_text() )
                 return JsonResponse( data )
-        
+
         elif currList.itemType == 'Book':
             form = BookForm( data={
                 'name': args['name'],
@@ -266,21 +266,30 @@ def editItem( request, listpk, itempk ):
                     if field.errors:
                         data['errors'].append( field.name.capitalize() + ': ' + field.errors.as_text() )
                 return JsonResponse( data )
-        
-        elif currList.itemType == 'Show':
-            form = ShowForm( data={
-                'name': args['name'],
-                'description': args['description'],
-                'cover': args['cover'],
-                'seasons': args['seasons'],
-                'writers': args['writers'],
-            } )
+
+        elif currList.itemType == 'Show' or currList.itemType == 'Movie':
+            if currList.itemType == 'Show':
+                form = ShowForm( data={
+                    'name': args['name'],
+                    'description': args['description'],
+                    'cover': args['cover'],
+                    'length': args['length'],
+                    'creators': args['creators'],
+                } )
+            else:
+                form = MovieForm(data={
+                    'name': args['name'],
+                    'description': args['description'],
+                    'cover': args['cover'],
+                    'length': args['length'],
+                    'creators': args['creators'],
+                })
 
             if form.is_valid():
                 currItem.name = form.cleaned_data.get( 'name' )
                 currItem.description = form.cleaned_data.get( 'description' )
-                currItem.seasons = form.cleaned_data.get( 'seasons' )
-                currItem.writers = form.cleaned_data.get( 'writers' )
+                currItem.length = form.cleaned_data.get( 'length' )
+                currItem.creators = form.cleaned_data.get( 'creators' )
 
                 currItem.cover = form.cleaned_data.get( 'cover' )
                 if currItem.cover == '':
@@ -290,52 +299,21 @@ def editItem( request, listpk, itempk ):
                     'name': currItem.name,
                     'description': currItem.description,
                     'cover': currItem.cover,
-                    'seasons': currItem.seasons,
-                    'writers': currItem.writers,
+                    'length': currItem.length,
+                    'creators': currItem.creators,
                 }
+
             else:
                 for field in form:
                     if field.errors:
                         data['errors'].append( field.name.capitalize() + ': ' + field.errors.as_text() )
                 return JsonResponse( data )
-        
-        elif currList.itemType == 'Movie':
-            form = MovieForm( data={
-                'name': args['name'],
-                'description': args['description'],
-                'cover': args['cover'],
-                'runtime': args['runtime'],
-                'directors': args['directors'],
-            } )
 
-            if form.is_valid():
-                currItem.name = form.cleaned_data.get( 'name' )
-                currItem.description = form.cleaned_data.get( 'description' )
-                currItem.runtime = form.cleaned_data.get( 'runtime' )
-                currItem.directors = form.cleaned_data.get( 'directors' )
-
-                currItem.cover = form.cleaned_data.get( 'cover' )
-                if currItem.cover == '':
-                    currItem.cover = 'none'
-
-                itemArgs = {
-                    'name': currItem.name,
-                    'description': currItem.description,
-                    'cover': currItem.cover,
-                    'runtime': currItem.runtime,
-                    'directors': currItem.directors,
-                }
-            else:
-                for field in form:
-                    if field.errors:
-                        data['errors'].append( field.name.capitalize() + ': ' + field.errors.as_text() )
-                return JsonResponse( data )
-        
         else:
             return HttpResponseServerError( 'Item type doesn\'t exist.' )
-        
+
         currItem.save()
-        
+
         data.update( itemArgs )
         data.update( { 'itempk': itempk } )
         return JsonResponse( data )
