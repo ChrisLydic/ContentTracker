@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, JsonResponse, Http404, HttpResponseServerError
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from .models import List, Item
 from .items import getItems, getItem, makeItem
 from .forms import *
@@ -11,9 +10,13 @@ import json
 @login_required
 def createList( request ):
     """
+    Create a new list. If the request is not a POST, then an empty form will
+    be used to render a page with a list creation form. Otherwise, check for
+    valid input and either create new list and redirect to its url or reload
+    form page and display error message(s) to user.
 
-    :param request:
-    :return:
+    :param request: request object
+    :return:        HttpResponse object
     """
     form = ListForm( data=request.POST or None )
     user = request.user
@@ -51,10 +54,18 @@ def createList( request ):
 @login_required
 def viewList( request, listpk ):
     """
+    View the items in a specific list. If there is no list or no known items
+    of the list's itemType, either a 404 error will be raised or a server error
+    will be returned, respectively.
 
-    :param request:
-    :param listpk:
-    :return:
+    This page also has an item creation form. If the request is not a POST,
+    then an empty form will be used to render a page with a list creation form.
+    Otherwise, check for valid input and either create new item and reload page
+    with the new item, or reload page and display error message(s) to user.
+
+    :param request: request object
+    :param listpk:  private key for list
+    :return:        HttpResponse object
     """
     user = request.user
     currList = List.objects.get( pk=listpk, user=user )
@@ -103,10 +114,16 @@ def viewList( request, listpk ):
 @login_required
 def editList( request, listpk ):
     """
+    Edit an existing list. If the request is not a POST, then a form will be
+    populated with the list's current data. Otherwise, check for valid input
+    and either update list and redirect to its url or reload form page and
+    display error message(s) to user.
 
-    :param request:
-    :param listpk:
-    :return:
+    Raises 404 error if list doesn't exist.
+
+    :param request: request object
+    :param listpk:  private key for list
+    :return:        HttpResponse object
     """
     user = request.user
     
@@ -114,10 +131,6 @@ def editList( request, listpk ):
     
     if currList is None:
         raise Http404( 'List does not exist.' )
-    
-    if currList.user != user:
-        return render( request, 'lists/list.html',
-            { 'error': 'You are not authorized to access this list.', } )
     
     form = ListForm( data=request.POST or None, initial={
         'name': currList.name,
@@ -150,10 +163,14 @@ def editList( request, listpk ):
 @login_required
 def deleteList( request, listpk ):
     """
+    Remove an existing list. If successful, user will be redirected
+    appropriately using the homepage url's logic.
 
-    :param request:
-    :param listpk:
-    :return:
+    Raises 404 error if list doesn't exist.
+
+    :param request: request object
+    :param listpk:  private key for list
+    :return:        HttpResponse object
     """
     user = request.user
     currList = List.objects.get( pk=listpk, user=user )
@@ -162,24 +179,27 @@ def deleteList( request, listpk ):
         raise Http404( 'List does not exist.' )
     
     currList.delete()
-    
-    currLists = List.objects.filter( user=user )
-    
-    if not currLists:
-        return HttpResponseRedirect( '/lists/create/' )
-    
-    return HttpResponseRedirect( '/lists/' + 
-        str( currLists.order_by( 'position', 'dateCreated' ).first().pk ) + '/' )
+
+    return HttpResponseRedirect( '/' )
 
 
 @login_required
 def editItem( request, listpk, itempk ):
     """
+    Changes an existing item. If there are form validation errors, they are
+    added to json data and returned for user to view. The item will not
+    update if this happens.
 
-    :param request:
-    :param listpk:
-    :param itempk:
-    :return:
+    This view does not update progress or position.
+
+    Raises 404 error if item doesn't exist, returns server error if itemType
+    is not valid. Requests are done through ajax, so a 404 error will be
+    raised if an ajax request is not received.
+
+    :param request: request object
+    :param listpk:  private key for item's list
+    :param itempk:  private key for item
+    :return:        json response object
     """
     if request.is_ajax() and request.method == 'POST':
         user = request.user
@@ -325,11 +345,15 @@ def editItem( request, listpk, itempk ):
 @login_required
 def editItemProgress( request, listpk, itempk ):
     """
+    Updates item's progress.
 
-    :param request:
-    :param listpk:
-    :param itempk:
-    :return:
+    Raises 404 error if item doesn't exist. Requests are done through ajax,
+    so a 404 error will be raised if an ajax request is not received.
+
+    :param request: request object
+    :param listpk:  private key for item's list
+    :param itempk:  private key for item
+    :return:        json response object
     """
     if request.is_ajax() and request.method == 'POST':
         user = request.user
@@ -353,12 +377,19 @@ def editItemProgress( request, listpk, itempk ):
 @login_required
 def moveItem( request, listpk, itempk, direction ):
     """
+    Swap current item's position with the item below it or the item above it,
+    if the other item exists. This function should not be called unless the
+    adjacent item exists.
 
-    :param request:
-    :param listpk:
-    :param itempk:
-    :param direction:
-    :return:
+    Raises 404 error if current item or adjacent item doesn't exist.
+    Requests are done through ajax, so a 404 error will be raised if an
+    ajax request is not received.
+
+    :param request:   request object
+    :param listpk:    private key for item's list
+    :param itempk:    private key for item
+    :param direction: direction to move the item in ('up' or 'down')
+    :return:          json response object
     """
     if request.is_ajax() and request.method == 'POST':
         user = request.user
@@ -392,11 +423,15 @@ def moveItem( request, listpk, itempk, direction ):
 @login_required
 def deleteItem( request, listpk, itempk ):
     """
+    Deletes an item.
 
-    :param request:
-    :param listpk:
-    :param itempk:
-    :return:
+    Raises 404 error if item doesn't exist. Requests are done through ajax,
+    so a 404 error will be raised if an ajax request is not received.
+
+    :param request: request object
+    :param listpk:  private key for item's list
+    :param itempk:  private key for item
+    :return:        json response object
     """
     if request.is_ajax() and request.method == 'POST':
         user = request.user
@@ -415,11 +450,12 @@ def deleteItem( request, listpk, itempk ):
 
 def viewSampleList( request, listpk ):
     """
-    Displays appropriate sample list based on a fake list key
+    Displays appropriate sample list based on a fake list key. Used to show
+    a mock version of the app to website visitors who do not have an account.
 
-    :param request:
-    :param listpk:
-    :return:
+    :param request: request object
+    :param listpk:  a list key that doesn't correspond to a real listpk
+    :return:        HttpResponse object
     """
     if listpk == '1':
         return render( request, 'sample/projects.html' )

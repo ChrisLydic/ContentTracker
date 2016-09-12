@@ -126,31 +126,19 @@ $( document ).ready( function() {
                         inputs.children( 'input[id=id_pageNumber]' ).val( units );
                     }
                     
-                } else if ( type === 'Show' ) {
+                } else if ( type === 'Show' || type === 'Movie' ) {
 
-                    if ( inputs.children( 'input[id=id_writers]' ).length ) {
-                        inputs.children( 'input[id=id_writers]' ).val(
+                    if ( inputs.children( 'input[id=id_creators]' ).length ) {
+                        inputs.children( 'input[id=id_creators]' ).val(
                             item.children( '.descWrapper' ).children( 'div' )
                                 .children( 'div' ).children( 'p' ).first()
                                 .text().trim() );
                     }
 
-                    if ( inputs.children( 'input[id=id_seasons]' ).length ) {
-                        inputs.children( 'input[id=id_seasons]' ).val( units );
+                    if ( inputs.children( 'input[id=id_length]' ).length ) {
+                        inputs.children( 'input[id=id_length]' ).val( units );
                     }
 
-                } else if ( type === 'Movie' ) {
-
-                    if ( inputs.children( 'input[id=id_directors]' ).length ) {
-                        inputs.children( 'input[id=id_directors]' ).val(
-                            item.children( '.descWrapper' ).children( 'div' )
-                                .children( 'div' ).children( 'p' ).first()
-                                .text().trim() );
-                    }
-
-                    if ( inputs.children( 'input[id=id_runtime]' ).length ) {
-                        inputs.children( 'input[id=id_runtime]' ).val( units );
-                    }
                 }
             }
 
@@ -172,10 +160,8 @@ $( document ).ready( function() {
                     'cover': inputs.children( 'input[id=id_cover]' ).val(),
                     'authors': inputs.children( 'input[id=id_authors]' ).val(),
                     'pageNumber': inputs.children( 'input[id=id_pageNumber]' ).val(),
-                    'writers': inputs.children( 'input[id=id_writers]' ).val(),
-                    'seasons': inputs.children( 'input[id=id_seasons]' ).val(),
-                    'directors': inputs.children( 'input[id=id_directors]' ).val(),
-                    'runtime': inputs.children( 'input[id=id_runtime]' ).val(),
+                    'creators': inputs.children( 'input[id=id_creators]' ).val(),
+                    'length': inputs.children( 'input[id=id_length]' ).val(),
                 };
 
                 $.ajax( {
@@ -189,6 +175,9 @@ $( document ).ready( function() {
                             // these are form validation errors, not ajax errors
                             alert( data.errors.toString() );
                         } else {
+                            var type = itemForm.children( 'form[id^=custom]' ).prop( 'id' )
+                                .slice( 'custom'.length );
+
                             // now the form will be updated and inserted back
                             //    into the page
                             itemPrev.children( '.itemHeader' ).children( 'h1' )
@@ -200,93 +189,66 @@ $( document ).ready( function() {
                             itemPrev.children( '.descWrapper' ).children( 'div' )
                                 .children( 'p:nth-child(2)' ).text( data['description'] );
 
-                            if ( data['authors'] ) {
+                            if ( type === 'Book' ) {
                                 itemPrev.children( '.descWrapper' ).children( 'div' )
                                     .children( 'div' ).children( 'p' ).first()
                                     .text( data['authors'] );
                                 
-                                // if the new pageNumber is not 0 and the previous
-                                //    was not 0, insert new number.
-                                // if the new pageNumber is 0 and the previous was
-                                //    not 0, remove the pageNumber html
-                                // if the new pageNumber is not 0 and the previous
-                                //    was 0, add the html back in
-                                if ( itemPrev.children( '.descWrapper' ).children( 'div' )
-                                    .children( 'div' ).children( 'p' )
-                                    .children( 'span' ).length ) {
+                                // remove the page number (does nothing if page number
+                                //    was previously zero) and if the new page number
+                                //    is not 0, add it back
+                                itemPrev.children( '.descWrapper' )
+                                    .children( 'div' ).children( 'div' )
+                                    .children( 'p:nth-child(2)' ).remove();
 
-                                    itemPrev.children( '.descWrapper' ).children( 'div' )
-                                        .children( 'div' ).children( 'p' )
-                                        .children( 'span' ).text( data['pageNumber'] );
-                                    
-                                    if ( data['pageNumber'] === 0 ) {
-                                        itemPrev.children( '.descWrapper' )
-                                            .children( 'div' ).children( 'div' )
-                                            .children( 'p:nth-child(2)' ).remove();
-                                    }
-
-                                } else if ( data['pageNumber'] !== 0 ) {
+                                if ( data['pageNumber'] === 1 ) {
                                      itemPrev.children( '.descWrapper' ).children( 'div' )
+                                        .children( 'div' ).append( '<p><span id="unit' +
+                                        data['itempk'] + '"> ' + data['pageNumber'] +
+                                        '</span> page</p>' );
+
+                                } else if ( data['pageNumber'] > 1 ) {
+                                    itemPrev.children( '.descWrapper' ).children( 'div' )
                                         .children( 'div' ).append( '<p><span id="unit' +
                                         data['itempk'] + '"> ' + data['pageNumber'] +
                                         '</span> pages</p>' );
                                 }
 
-                            } else if ( data['writers'] ) {
+                            } else if ( type === 'Show' ) {
                                 itemPrev.children( '.descWrapper' ).children( 'div' )
                                     .children( 'div' ).children( 'p' ).first()
-                                    .text( data['writers'] );
-                                
-                                if ( itemPrev.children( '.descWrapper' ).children( 'div' )
-                                    .children( 'div' ).children( 'p' )
-                                    .children( 'span' ).length ) {
+                                    .text( data['creators'] );
 
-                                    itemPrev.children( '.descWrapper' ).children( 'div' )
-                                        .children( 'div' ).children( 'p' )
-                                        .children( 'span' ).text( data['seasons'] );
-                                    
-                                    if ( data['seasons'] === 0 ) {
-                                        itemPrev.children( '.descWrapper' )
-                                            .children( 'div' ).children( 'div' )
-                                            .children( 'p:nth-child(2)' ).remove();
-                                    }
+                                itemPrev.children( '.descWrapper' )
+                                    .children( 'div' ).children( 'div' )
+                                    .children( 'p:nth-child(2)' ).remove();
 
-                                } else if ( data['seasons'] === 1 ) {
+                                if ( data['length'] === 1 ) {
                                      itemPrev.children( '.descWrapper' ).children( 'div' )
                                         .children( 'div' ).append( '<p><span id="unit' +
-                                        data['itempk'] + '"> ' + data['seasons'] +
+                                        data['itempk'] + '"> ' + data['length'] +
                                         '</span> season</p>' );
 
-                                } else if ( data['seasons'] > 1 ) {
+                                } else if ( data['length'] > 1 ) {
                                      itemPrev.children( '.descWrapper' ).children( 'div' )
                                         .children( 'div' ).append( '<p><span id="unit' +
-                                        data['itempk'] + '"> ' + data['seasons'] +
+                                        data['itempk'] + '"> ' + data['length'] +
                                         '</span> seasons</p>' );
                                 }
 
-                            } else if ( data['directors'] ) {
+                            } else if ( type === 'Movie' ) {
                                 itemPrev.children( '.descWrapper' ).children( 'div' )
                                     .children( 'div' ).children( 'p' ).first()
-                                    .text( data['directors'] );
-                                
-                                if ( itemPrev.children( '.descWrapper' ).children( 'div' )
-                                    .children( 'div' ).children( 'p' )
-                                    .children( 'span' ).length ) {
+                                    .text( data['creators'] );
 
-                                    itemPrev.children( '.descWrapper' ).children( 'div' )
-                                        .children( 'div' ).children( 'p' )
-                                        .children( 'span' ).text( data['runtime'] );
-                                    
-                                    if ( data['runtime'] === 0 ) {
-                                        itemPrev.children( '.descWrapper' )
-                                            .children( 'div' ).children( 'div' )
-                                            .children( 'p:nth-child(2)' ).remove();
-                                    }
+                                itemPrev.children( '.descWrapper' )
+                                    .children( 'div' ).children( 'div' )
+                                    .children( 'p:nth-child(2)' ).remove();
 
-                                } else if ( data['runtime'] !== 0 ) {
+                                if ( data['length'] !== 0 ) {
                                      itemPrev.children( '.descWrapper' ).children( 'div' )
                                         .children( 'div' ).append( '<p><span id="unit' +
-                                        data['itempk'] + '"> ' + data['runtime'] +
+                                        data['itempk'] + '"> ' + data['length'] +
                                         '</span> minutes</p>' );
                                 }
                             }

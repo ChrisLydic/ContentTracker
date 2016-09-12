@@ -22,7 +22,7 @@ function searchBooks () {
     $.ajax( {
         type: 'GET',
         url: 'https://openlibrary.org/search.json?q=' + dataStr,
-        dataType: "json",
+        dataType: 'json',
         success: function ( data ) {
             
             if ( data.num_found > 0 ) {
@@ -83,7 +83,7 @@ function searchBookOLIDs ( event ) {
             type: 'GET',
             url: 'https://openlibrary.org/api/books?bibkeys=OLID:' +
                 olid + '&jscmd=details&format=jsonp',
-            dataType: "jsonp",
+            dataType: 'jsonp',
             success: function ( data ) {
 
                 var priority = false;
@@ -207,10 +207,10 @@ function searchVideosPage( event ) {
     $.ajax( {
         type: 'GET',
         url: 'http://www.omdbapi.com/?s=' + urlArgs,
-        dataType: "json",
+        dataType: 'json',
         success: function ( data ) {
 
-            if ( data.Response === "True" ) {
+            if ( data.Response === 'True' ) {
                 var dataList = data.Search;
 
                 for ( var i = 0; i < dataList.length; i++ ) {
@@ -264,7 +264,7 @@ function createVideoItem ( event ) {
     $.ajax( {
         type: 'GET',
         url: 'http://www.omdbapi.com/?i=' + urlArgs,
-        dataType: "json",
+        dataType: 'json',
         success: function ( data ) {
 
             if ( data.Response === 'True' ) {
@@ -300,8 +300,8 @@ function createVideoItem ( event ) {
                         data.Writer = '';
                     }
 
-                    $( '#id_seasons' ).prop( 'value', data.totalSeasons );
-                    $( '#id_writers' ).prop( 'value', data.Writer );
+                    $( '#id_length' ).prop( 'value', data.totalSeasons );
+                    $( '#id_creators' ).prop( 'value', data.Writer );
                 } else {
                     if ( data.Runtime === 'N/A' ) {
                         data.Runtime = '0 min';
@@ -310,8 +310,8 @@ function createVideoItem ( event ) {
                         data.Director = '';
                     }
 
-                    $( '#id_runtime' ).prop( 'value', data.Runtime.slice( 0, -4 ) );
-                    $( '#id_directors' ).prop( 'value', data.Director );
+                    $( '#id_length' ).prop( 'value', data.Runtime.slice( 0, -4 ) );
+                    $( '#id_creators' ).prop( 'value', data.Director );
                 }
 
                 document.forms[ 'searchForm' ].submit();

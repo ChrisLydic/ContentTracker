@@ -4,9 +4,12 @@ from lists.models import List
 
 def home( request ):
     """
+    Get appropriate homepage: the index if no one is logged in or if a user
+    is logged in, either send them to list creation page (if they have no
+    lists) or send them to the page of the first list in their lists.
 
-    :param request:
-    :return:
+    :param request: Django request object
+    :return: Appropriate response object
     """
     user = request.user
     

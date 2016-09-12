@@ -1,18 +1,21 @@
 """
 Helper functions for creating and retrieving items.
+Used to hide different item types.
 """
 from .models import Item, Link, Book, Video
 
 
 def getItem( user, list, itempk ):
     """
+    Get a single item from a list.
 
-    :param user:
-    :param list:
-    :param itempk:
-    :return:
+    :param user:   user who owns list
+    :param list:   list containing item
+    :param itempk: private key of item
+    :return:       item or None
     """
     itemType = list.itemType
+    item = None
 
     if itemType == 'Item':
         item = Item.objects.get( pk=itempk, list=list, user=user )
@@ -28,10 +31,11 @@ def getItem( user, list, itempk ):
 
 def getItems( user, list ):
     """
+    Get all items in a list.
 
-    :param user:
-    :param list:
-    :return:
+    :param user: user who owns list
+    :param list: list containing items
+    :return:     set of items in list, ordered appropriately
     """
     itemType = list.itemType
 
@@ -49,12 +53,13 @@ def getItems( user, list ):
 
 def makeItem( user, list, cleanedData, currPos ):
     """
+    Creates an item using validated form data. Creates and modifies data as
+    needed.
 
-    :param user:
-    :param list:
-    :param cleanedData:
-    :param currPos:
-    :return:
+    :param user:        user who owns item
+    :param list:        private key of item's list
+    :param cleanedData: form data that has been validated
+    :param currPos:     location of item in list
     """
     itemType = list.itemType
 

@@ -1,25 +1,17 @@
 """
 Django settings for tracker project.
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 with open( os.path.abspath( 'tracker/secret_key.txt' ) ) as f:
     SECRET_KEY = f.read().strip()
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.ctrack.xyz']
 
 
 # Application definition
@@ -72,7 +64,6 @@ WSGI_APPLICATION = 'tracker.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 with open( os.path.abspath( 'tracker/db.txt' ) ) as f:
     dbdata = f.read().strip().split('+')
@@ -110,7 +101,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/1.9/topics/i18n/
+# https://docs.djangoproject.com/en/1.10/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
