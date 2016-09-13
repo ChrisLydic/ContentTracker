@@ -378,10 +378,8 @@ def editItemProgress( request, listpk, itempk ):
 def moveItem( request, listpk, itempk, direction ):
     """
     Swap current item's position with the item below it or the item above it,
-    if the other item exists. This function should not be called unless the
-    adjacent item exists.
+    if the other item exists.
 
-    Raises 404 error if current item or adjacent item doesn't exist.
     Requests are done through ajax, so a 404 error will be raised if an
     ajax request is not received.
 
@@ -405,15 +403,15 @@ def moveItem( request, listpk, itempk, direction ):
             else:
                 aboveItem = getItems( user, currList ).filter( position__gt=( currItem.position ) ).last()
         except:
-            # if the item is at the beginning or end of the list, don't do anything
             raise Http404( 'Item does not exist.' )
 
-        position = aboveItem.position
-        aboveItem.position = currItem.position
-        currItem.position = position
-        aboveItem.save()
-        currItem.save()
-        
+        if aboveItem is not None:
+            position = aboveItem.position
+            aboveItem.position = currItem.position
+            currItem.position = position
+            aboveItem.save()
+            currItem.save()
+
         return JsonResponse( data={} )
 
     else:
