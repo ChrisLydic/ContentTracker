@@ -1,7 +1,7 @@
 """
 accounts URL Configuration
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib.auth import views as auth_views
 from django.views.generic import RedirectView
 from . import views
@@ -30,4 +30,6 @@ urlpatterns = [
     url( r'^register/$', views.register, name='register' ),
     url( r'^settings_change/$', views.changeSettings, name='changeSettings' ),
     url( r'^settings/$', views.viewSettings, name='settings' ),
+
+    url( r'^', include('password_reset.urls') ),
 ]

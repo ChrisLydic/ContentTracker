@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'lists',
+    'password_reset', # github.com/brutasse/django-password-reset
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -61,6 +62,21 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'tracker.wsgi.application'
+
+
+# Email, used for password recovery
+
+with open( os.path.abspath( 'tracker/email.txt' ) ) as f:
+    emdata = f.read().strip().split('+')
+
+    EMAIL_HOST = emdata[0]
+    EMAIL_PORT = emdata[1]
+    EMAIL_HOST_PASSWORD = emdata[2]
+    EMAIL_HOST_USER = emdata[3]
+    SERVER_EMAIL = emdata[4]
+    ADMINS = (('Chris', emdata[4]),)
+    EMAIL_SUBJECT_PREFIX = ''
+    EMAIL_USE_TLS = True
 
 
 # Database
@@ -115,7 +131,6 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join( os.path.join( os.path.dirname(BASE_DIR), 'public' ), 'static' )

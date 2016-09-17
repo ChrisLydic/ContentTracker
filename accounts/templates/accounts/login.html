@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+    {% url "password_reset_recover" %}
     <div class="formWrapper">
 
         <form method="post" action="{% url 'login' %}">

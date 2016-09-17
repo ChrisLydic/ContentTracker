@@ -1,4 +1,5 @@
 secret_key.txt
 db.txt
+email.txt
 **/__pycache__/**
 **/migrations/**
